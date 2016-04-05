@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     let pickerExpressions = ["<", "<=", ">", ">=", "==", "!="]
     let pickerIncrementDecrement = ["++", "--"]
@@ -29,6 +29,10 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var ifV2IncDec: UITextField!
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
+
+    //  first responder
+    var activeTextField = UITextField()
+
     
     
     
@@ -62,6 +66,14 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         ifV2IncDec.inputView = pickerViewIncrementDecrement
         ifV3Mutation.inputView = pickerViewMutations
         ifV3NumberField.inputView = pickerViewVariables
+        
+//        textfieldDelegation
+        ifConditionP1.delegate = self
+        ifConditionP2.delegate = self
+        ifV1IncDec.delegate = self
+        ifV2IncDec.delegate = self
+        ifV3Mutation.delegate = self
+        ifV3NumberField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,6 +82,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     // MARK: - Event Handling
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        self.activeTextField = textField
+    }
     
     
     // MARK: - PickerView
@@ -114,6 +131,20 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        var text = ""
+        
+        if pickerView.tag == 0 {
+            text = pickerExpressions[row]
+        } else if pickerView.tag == 1 {
+            text = pickerVariables[row]
+        } else if pickerView.tag == 2 {
+            text = pickerIncrementDecrement[row]
+        } else if pickerView.tag == 3 {
+            text = pickerMutations[row]
+        }
+        
+        
+        activeTextField.text = text
     }
     
     
