@@ -105,6 +105,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        mainV3.text = String(ForConfigHeader.mainV3)
+        
         forInitV1P.text = String(ForConfigHeader.forInitV1P)
         forInitV2P.text = String(ForConfigHeader.forInitV2P)
         forInitV1Condition.text = ForConfigHeader.forInitV1Condition

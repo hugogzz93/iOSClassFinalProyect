@@ -101,27 +101,36 @@ class ViewControllerOne: UIViewController {
     }
     
     @IBAction func unwindEditar(sender: UIStoryboardSegue){
+        mainV3.text = String(forHeader.mainV3)
+        
         forInitV1P.text = String(forHeader.forInitV1P)
         forInitV2P.text = String(forHeader.forInitV2P)
+        
         forInitV1Condition.text = forHeader.forInitV1Condition
         forInitV1NumberField.text = String(forHeader.forInitV1NumberField)
-        forInitV1IncDec.text = forHeader.forV1IncDec
-        forInitV2IncDec.text = forHeader.forV2IncDec
         
+        forInitV1IncDec.text = forHeader.forInitV1IncDec
+        forInitV2IncDec.text = forHeader.forInitV2IncDec
+        
+        //for body
         forV1IncDec.text = forHeader.forV1IncDec
         forV2IncDec.text = forHeader.forV2IncDec
         forV3Mutation.text = forHeader.forV3Mutation
         forV3NumberField.text = String(forHeader.forV3NumberField)
+        
         coutField1.text = forHeader.coutField1
         coutField2.text = forHeader.coutField2
         coutField3.text = forHeader.coutField3
         
+        //if conditional
         ifConditionP1.text = forHeader.ifConditionP1
         ifConditionP2.text = forHeader.ifConditionP2
+        
+        //if body
         ifV1IncDec.text = forHeader.ifV1IncDec
         ifV2IncDec.text = forHeader.ifV2IncDec
         ifV3Mutation.text = forHeader.ifV3Mutation
-        ifV3NumberField.text = String(forHeader.ifV3NumberField)
+        ifV3NumberField.text = forHeader.ifV3NumberField
         
     }
     
