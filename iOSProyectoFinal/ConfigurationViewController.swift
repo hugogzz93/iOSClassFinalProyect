@@ -8,7 +8,46 @@
 
 import UIKit
 
+struct ForHeader {
+    
+    var mainV3: Int
+    
+    
+    //for init
+    var forInitV1P: Int
+    var forInitV2P: Int
+    
+    var forInitV1Condition: String
+    var forInitV1NumberField: Int
+    
+    var forInitV1IncDec: String
+    var forInitV2IncDec: String
+    
+    //for body
+    var forV1IncDec: String
+    var forV2IncDec: String
+    var forV3Mutation: String
+    var forV3NumberField: Int
+    
+    var coutField1: String
+    var coutField2: String
+    var coutField3: String
+    
+    //if conditional
+    var ifConditionP1: String
+    var ifConditionP2: String
+    
+    //if body
+    var ifV1IncDec: String
+    var ifV2IncDec: String
+    var ifV3Mutation: String
+    var ifV3NumberField: Int
+    
+}
+
 class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+    
+    var ForConfigHeader: ForHeader!
     
     let pickerExpressions = ["<", "<=", ">", ">=", "==", "!="]
     let pickerIncrementDecrement = ["++", "--"]
@@ -19,6 +58,29 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     var pickerViewVariables = UIPickerView()
     var pickerViewMutations = UIPickerView()
     var pickerViewIncrementDecrement = UIPickerView()
+    
+    @IBOutlet weak var mainV3: UITextField!
+    
+    
+    //for init
+    @IBOutlet weak var forInitV1P: UITextField!
+    @IBOutlet weak var forInitV2P: UITextField!
+    
+    @IBOutlet weak var forInitV1Condition: UITextField!
+    @IBOutlet weak var forInitV1NumberField: UITextField!
+    
+    @IBOutlet weak var forInitV1IncDec: UITextField!
+    @IBOutlet weak var forInitV2IncDec: UITextField!
+    
+    //for body
+    @IBOutlet weak var forV1IncDec: UITextField!
+    @IBOutlet weak var forV2IncDec: UITextField!
+    @IBOutlet weak var forV3Mutation: UITextField!
+    @IBOutlet weak var forV3NumberField: UITextField!
+    
+    @IBOutlet weak var coutField1: UITextField!
+    @IBOutlet weak var coutField2: UITextField!
+    @IBOutlet weak var coutField3: UITextField!
     
     //if conditional
     @IBOutlet weak var ifConditionP1: UITextField!
@@ -60,6 +122,13 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         pickerViewMutations.tag = 3
         
 //          pickerView assignment
+        forInitV1Condition.inputView = pickerViewExpressions
+        forInitV1IncDec.inputView = pickerViewIncrementDecrement
+        forInitV2IncDec.inputView = pickerViewIncrementDecrement
+        forV1IncDec.inputView = pickerViewIncrementDecrement
+        forV2IncDec.inputView = pickerViewIncrementDecrement
+        forV3Mutation.inputView = pickerViewMutations
+        
         ifConditionP1.inputView = pickerViewExpressions
         ifConditionP2.inputView = pickerViewVariables
         ifV1IncDec.inputView = pickerViewIncrementDecrement
@@ -67,19 +136,37 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         ifV3Mutation.inputView = pickerViewMutations
         ifV3NumberField.inputView = pickerViewVariables
         
+        coutField1.inputView = pickerViewVariables
+        coutField2.inputView = pickerViewVariables
+        coutField3.inputView = pickerViewVariables
+        
+        
+        
 //        textfieldDelegation
+        forInitV1Condition.delegate = self
+        forInitV1IncDec.delegate = self
+        forInitV2IncDec.delegate = self
+        forV1IncDec.delegate = self
+        forV2IncDec.delegate = self
+        forV3Mutation.delegate = self
+        
         ifConditionP1.delegate = self
         ifConditionP2.delegate = self
         ifV1IncDec.delegate = self
         ifV2IncDec.delegate = self
         ifV3Mutation.delegate = self
         ifV3NumberField.delegate = self
+        
+        coutField1.delegate = self
+        coutField2.delegate = self
+        coutField3.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     // MARK: - Event Handling
     
@@ -148,14 +235,9 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     
-    /*
+
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
+ 
     
 }
