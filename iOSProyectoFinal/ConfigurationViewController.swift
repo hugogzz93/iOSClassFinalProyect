@@ -10,38 +10,39 @@ import UIKit
 
 struct ForHeader {
     
-    var mainV3: Int
+    var mainV3: Int = 3
     
     
     //for init
-    var forInitV1P: Int
-    var forInitV2P: Int
+    var forInitV1P: Int = 1
+    var forInitV2P: Int = 2
     
-    var forInitV1Condition: String
-    var forInitV1NumberField: Int
+    var forInitV1Condition: String =  "<"
+    var forInitV1NumberField: Int = 10
     
-    var forInitV1IncDec: String
-    var forInitV2IncDec: String
+    var forInitV1IncDec: String = "++"
+    var forInitV2IncDec: String = "--"
     
     //for body
-    var forV1IncDec: String
-    var forV2IncDec: String
-    var forV3Mutation: String
-    var forV3NumberField: Int
+    var forV1IncDec: String = "--"
+    var forV2IncDec: String = "++"
+    var forV3Mutation: String = "-="
+    var forV3NumberField: Int = 2
     
-    var coutField1: String
-    var coutField2: String
-    var coutField3: String
+    var coutField1: String = "v1"
+    var coutField2: String = "v2"
+    var coutField3: String = "v3"
     
     //if conditional
-    var ifConditionP1: String
-    var ifConditionP2: String
+    var ifConditionP1: String = ">="
+    var ifConditionP2: String = "v2"
     
     //if body
-    var ifV1IncDec: String
-    var ifV2IncDec: String
-    var ifV3Mutation: String
-    var ifV3NumberField: Int
+    var ifV1IncDec: String = "+="
+    var ifV2IncDec: String = "--"
+    var ifV3Mutation: String = "+="
+    var ifV3NumberField: String = "v2"
+    //var ifV3NumberField: Int = 2
     
 }
 
@@ -51,6 +52,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     let pickerExpressions = ["<", "<=", ">", ">=", "==", "!="]
     let pickerIncrementDecrement = ["++", "--"]
+    let pickerIncrementDecrement2 = ["++", "--",""]
     let pickerMutations = ["+=", "-=", "*=", "/="]
     let pickerVariables = ["v1", "v2", "v3"]
     
@@ -58,6 +60,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     var pickerViewVariables = UIPickerView()
     var pickerViewMutations = UIPickerView()
     var pickerViewIncrementDecrement = UIPickerView()
+    var pickerViewIncrementDecrement2 = UIPickerView()
     
     @IBOutlet weak var mainV3: UITextField!
     
@@ -102,6 +105,29 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        forInitV1P.text = String(ForConfigHeader.forInitV1P)
+        forInitV2P.text = String(ForConfigHeader.forInitV2P)
+        forInitV1Condition.text = ForConfigHeader.forInitV1Condition
+        forInitV1NumberField.text = String(ForConfigHeader.forInitV1NumberField)
+        forInitV1IncDec.text = ForConfigHeader.forInitV1IncDec
+        forInitV2IncDec.text = ForConfigHeader.forInitV2IncDec
+        
+        ifConditionP1.text = ForConfigHeader.ifConditionP1
+        ifConditionP2.text = ForConfigHeader.ifConditionP2
+        ifV1IncDec.text = ForConfigHeader.ifV1IncDec
+        ifV2IncDec.text = ForConfigHeader.ifV2IncDec
+        ifV3Mutation.text = ForConfigHeader.ifV3Mutation
+        ifV3NumberField.text = String(ForConfigHeader.ifV3NumberField)
+        
+        forV1IncDec.text = ForConfigHeader.forV1IncDec
+        forV2IncDec.text = ForConfigHeader.forV2IncDec
+        forV3Mutation.text = ForConfigHeader.forV3Mutation
+        forV3NumberField.text = String(ForConfigHeader.forV3NumberField)
+        coutField1.text = ForConfigHeader.coutField1
+        coutField2.text = ForConfigHeader.coutField2
+        coutField3.text = ForConfigHeader.coutField3
+        
+        
 //        pickerView protocols
         pickerViewExpressions.delegate = self
         pickerViewExpressions.dataSource = self
@@ -115,24 +141,28 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         pickerViewIncrementDecrement.delegate = self
         pickerViewIncrementDecrement.dataSource = self
         
+        pickerViewIncrementDecrement2.delegate = self
+        pickerViewIncrementDecrement2.dataSource = self
+        
 //          picker view identification
         pickerViewExpressions.tag = 0
         pickerViewVariables.tag = 1
         pickerViewIncrementDecrement.tag = 2
         pickerViewMutations.tag = 3
+        pickerViewIncrementDecrement2.tag = 4
         
 //          pickerView assignment
         forInitV1Condition.inputView = pickerViewExpressions
         forInitV1IncDec.inputView = pickerViewIncrementDecrement
-        forInitV2IncDec.inputView = pickerViewIncrementDecrement
+        forInitV2IncDec.inputView = pickerViewIncrementDecrement2
         forV1IncDec.inputView = pickerViewIncrementDecrement
-        forV2IncDec.inputView = pickerViewIncrementDecrement
+        forV2IncDec.inputView = pickerViewIncrementDecrement2
         forV3Mutation.inputView = pickerViewMutations
         
         ifConditionP1.inputView = pickerViewExpressions
         ifConditionP2.inputView = pickerViewVariables
         ifV1IncDec.inputView = pickerViewIncrementDecrement
-        ifV2IncDec.inputView = pickerViewIncrementDecrement
+        ifV2IncDec.inputView = pickerViewIncrementDecrement2
         ifV3Mutation.inputView = pickerViewMutations
         ifV3NumberField.inputView = pickerViewVariables
         
@@ -195,6 +225,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             return pickerIncrementDecrement.count
         } else if pickerView.tag == 3 {
             return pickerMutations.count
+        } else if pickerView.tag == 4 {
+            return pickerIncrementDecrement2.count
         }
         return 1
         
@@ -212,6 +244,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             return pickerIncrementDecrement[row]
         } else if pickerView.tag == 3 {
             return pickerMutations[row]
+        }else if pickerView.tag == 4 {
+            return pickerIncrementDecrement2[row]
         }
         return ""
     }
@@ -228,11 +262,52 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             text = pickerIncrementDecrement[row]
         } else if pickerView.tag == 3 {
             text = pickerMutations[row]
+        }else if pickerView.tag == 4 {
+            text = pickerIncrementDecrement2[row]
         }
-        
         
         activeTextField.text = text
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let viewInic: ViewControllerOne = segue.destinationViewController as! ViewControllerOne
+        
+        ForConfigHeader.forInitV1P = Int(forInitV1P.text!)!
+        ForConfigHeader.forInitV2P = Int(forInitV2P.text!)!
+        ForConfigHeader.forInitV1Condition = forInitV1Condition.text!
+        ForConfigHeader.forInitV1NumberField = Int(forInitV1NumberField.text!)!
+        ForConfigHeader.forInitV1IncDec = forInitV1IncDec.text!
+        ForConfigHeader.forInitV2IncDec = forInitV2IncDec.text!
+        
+        ForConfigHeader.forV1IncDec = forV1IncDec.text!
+        ForConfigHeader.forV2IncDec = forV2IncDec.text!
+        ForConfigHeader.forV3Mutation = forV3Mutation.text!
+        ForConfigHeader.forV3NumberField = Int(forV3NumberField.text!)!
+        
+        ForConfigHeader.coutField1 = coutField1.text!
+        ForConfigHeader.coutField2 = coutField2.text!
+        ForConfigHeader.coutField3 = coutField3.text!
+        
+        //if conditional
+        ForConfigHeader.ifConditionP1 = ifConditionP1.text!
+        ForConfigHeader.ifConditionP2 = ifConditionP2.text!
+        
+        //if body
+        ForConfigHeader.ifV1IncDec = ifV1IncDec.text!
+        ForConfigHeader.ifV2IncDec = ifV2IncDec.text!
+        ForConfigHeader.ifV3Mutation = ifV3Mutation.text!
+        ForConfigHeader.ifV3NumberField = ifV3NumberField.text!
+        //ForConfigHeader.ifV3NumberField = Int(ifV3NumberField.text!)!
+
+        
+        viewInic.forHeader = ForConfigHeader
+    }
+    
+    @IBAction func quitaTeclado()
+    {
+        self.view.endEditing(true)
+    }
+
     
     
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xqf-gJ-qR8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -518,11 +518,54 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5V-Wf-6Q7">
+                                <rect key="frame" x="466" y="681" width="253" height="58"/>
+                                <color key="backgroundColor" red="0.87055407070000002" green="0.21710526320000001" blue="0.27341180100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                <state key="normal" title="Configurar Ciclo">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xqf-gJ-qR8" kind="presentation" identifier="config" id="2V3-KP-6kN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wn-WV-AoC">
+                                <rect key="frame" x="205" y="681" width="253" height="58"/>
+                                <color key="backgroundColor" red="0.96908777950000002" green="0.81749314070000001" blue="0.020275512709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                <state key="normal" title="Mas Informacion">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="coutField1" destination="Mc9-A9-wJ4" id="EP1-Pg-pJp"/>
+                        <outlet property="coutField2" destination="zWH-M5-xL4" id="fDX-Ei-QXt"/>
+                        <outlet property="coutField3" destination="oyK-v4-iQr" id="Lzn-n5-PEi"/>
+                        <outlet property="forInitV1Condition" destination="68o-SX-T6I" id="3oQ-gr-Rdw"/>
+                        <outlet property="forInitV1IncDec" destination="A5d-Mz-CqM" id="KII-dZ-GQJ"/>
+                        <outlet property="forInitV1NumberField" destination="osa-vk-X2z" id="LKr-02-ma8"/>
+                        <outlet property="forInitV1P" destination="sed-CU-qab" id="S2I-Vt-C20"/>
+                        <outlet property="forInitV2IncDec" destination="AUj-XJ-33w" id="wmP-ff-IET"/>
+                        <outlet property="forInitV2P" destination="0LF-o8-fWe" id="zFF-Yw-EqV"/>
+                        <outlet property="forV1IncDec" destination="DJv-6b-XCz" id="Wcv-vf-dJS"/>
+                        <outlet property="forV2IncDec" destination="Atx-P0-BbV" id="Bg8-FF-ekK"/>
+                        <outlet property="forV3Mutation" destination="BE7-Fa-Kph" id="4Bx-E2-Ufo"/>
+                        <outlet property="forV3NumberField" destination="q36-5a-kTJ" id="e7N-zz-hmP"/>
+                        <outlet property="ifConditionP1" destination="luL-Mx-pPp" id="lnh-QD-hg5"/>
+                        <outlet property="ifConditionP2" destination="mke-iE-U4g" id="PSU-OM-LoW"/>
+                        <outlet property="ifV1IncDec" destination="Y2R-8N-txy" id="vqT-KL-IEv"/>
+                        <outlet property="ifV2IncDec" destination="sdu-XA-Vti" id="sEa-3m-dm0"/>
+                        <outlet property="ifV3Mutation" destination="zKQ-aI-YIH" id="FYg-Vw-Jbq"/>
+                        <outlet property="ifV3NumberField" destination="ByK-r8-wBk" id="Kty-cH-sGu"/>
+                        <outlet property="mainV3" destination="5lO-3r-Mdz" id="mUF-pU-EOb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -778,6 +821,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-57-hp5">
+                                <rect key="frame" x="119" y="549" width="126" height="61"/>
+                                <color key="backgroundColor" red="0.1764705882" green="0.76078431369999999" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Regresar">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="zfp-Jt-Gpl" kind="unwind" unwindAction="unwindEditar:" id="IXK-bG-SOa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -807,8 +861,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfp-OO-9uS" sceneMemberID="firstResponder"/>
+                <exit id="zfp-Jt-Gpl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="295" y="204"/>
+            <point key="canvasLocation" x="201" y="287"/>
         </scene>
     </scenes>
     <resources>
