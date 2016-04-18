@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A39D8D31CC300AD00AC4055 /* FlowControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A39D8D21CC300AD00AC4055 /* FlowControl.swift */; };
 		9A58EF5B1C8E7FA60018572C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A58EF5A1C8E7FA60018572C /* AppDelegate.swift */; };
 		9A58EF5D1C8E7FA60018572C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A58EF5C1C8E7FA60018572C /* ViewController.swift */; };
 		9A58EF601C8E7FA60018572C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A58EF5E1C8E7FA60018572C /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A39D8D21CC300AD00AC4055 /* FlowControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowControl.swift; sourceTree = "<group>"; };
 		9A58EF571C8E7FA60018572C /* iOSProyectoFinal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSProyectoFinal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A58EF5A1C8E7FA60018572C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A58EF5C1C8E7FA60018572C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				9A58EF5E1C8E7FA60018572C /* Main.storyboard */,
 				9A976E6D1CB325E7006F901B /* ConfigurationViewController.swift */,
 				9A58EF8A1C9091C80018572C /* ViewControllerOne.swift */,
+				9A39D8D21CC300AD00AC4055 /* FlowControl.swift */,
 				9A58EF611C8E7FA60018572C /* Assets.xcassets */,
 				9A58EF631C8E7FA60018572C /* LaunchScreen.storyboard */,
 				9A58EF661C8E7FA60018572C /* Info.plist */,
@@ -144,6 +147,7 @@
 				9A58EF8B1C9091C80018572C /* ViewControllerOne.swift in Sources */,
 				9A976E6E1CB325E7006F901B /* ConfigurationViewController.swift in Sources */,
 				9A58EF5D1C8E7FA60018572C /* ViewController.swift in Sources */,
+				9A39D8D31CC300AD00AC4055 /* FlowControl.swift in Sources */,
 				9A58EF5B1C8E7FA60018572C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
