@@ -8,37 +8,6 @@
 
 import UIKit
 
-struct Data {
-    var v1 : Float = 0
-    var v2 : Float = 0
-    var v3 : Float = 0
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
-extension UIColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(netHex:Int) {
-        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
-    }
-}
-
 class ViewControllerOne: UIViewController {
     
     var forHeader = ForHeader(
@@ -62,32 +31,13 @@ class ViewControllerOne: UIViewController {
         ifV1IncDec: "++",
         ifV2IncDec: "--",
         ifV3Mutation: "+=",
-        ifV3NumberField: "v2"
+        ifV3NumberField: "v2",
+        nombreV1: "v1",
+        nombreV2: "v2",
+        nombreV3: "v3",
+        actV2:  true,
+        actV3:  true
     )
-    
-    
-    
-    var currentInstruction = 0
-    let arraySize = 10
-    var forConditional = true
-    var ifConditional = true
-    var executionFinished = false
-    var forInitialized = false
-    
-    var data = Data()
-    
-    @IBOutlet var pointerCollection: Array<UIView>?
-    //inspector
-    @IBOutlet var InsV1Val: UILabel!
-    @IBOutlet var InsV2Val: UILabel!
-    @IBOutlet var InsV3Val: UILabel!
-    @IBOutlet var insCout1: UILabel!
-    @IBOutlet var insCout2: UILabel!
-    @IBOutlet var insCout3: UILabel!
-    @IBOutlet var playButton: UIButton!
-    
-    var btnImage = UIImage(named: "play")
-    
     
     
     @IBOutlet weak var mainV3: UITextField!
@@ -102,6 +52,13 @@ class ViewControllerOne: UIViewController {
     
     @IBOutlet weak var forInitV1IncDec: UITextField!
     @IBOutlet weak var forInitV2IncDec: UITextField!
+    
+    
+    @IBOutlet weak var endInitV1: UILabel!
+    @IBOutlet weak var endInitV2: UILabel!
+    @IBOutlet weak var endPar1: UILabel!
+    @IBOutlet weak var endPar2: UILabel!
+    
     
     //for body
     @IBOutlet weak var forV1IncDec: UITextField!
@@ -123,21 +80,86 @@ class ViewControllerOne: UIViewController {
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
     
-    //quiz fields
-    @IBOutlet var quizLb: UILabel!
-    @IBOutlet var quizv1: UITextField!
-    @IBOutlet var quizv2: UITextField!
-    @IBOutlet var quizv3: UITextField!
-    @IBOutlet var quizBck: UIView!
+    //variable names labels
     
+    @IBOutlet weak var v3start: UILabel!
+    
+    @IBOutlet weak var v1ForDec: UILabel!
+    @IBOutlet weak var v2ForDec: UILabel!
+    @IBOutlet weak var v1ForCompare: UILabel!
+    @IBOutlet weak var v1ForCambio: UILabel!
+    @IBOutlet weak var v2ForCambio: UILabel!
+    
+    @IBOutlet weak var v1ForBody: UILabel!
+    @IBOutlet weak var v2ForBody: UILabel!
+    @IBOutlet weak var v3ForBody: UILabel!
+    
+    @IBOutlet weak var ifV1Compare: UILabel!
+    @IBOutlet weak var v1IF: UILabel!
+    @IBOutlet weak var v2IF: UILabel!
+    @IBOutlet weak var v3IF: UILabel!
+    
+    @IBOutlet weak var v1Inspect: UILabel!
+    @IBOutlet weak var v2Inspect: UILabel!
+    @IBOutlet weak var v3Inspect: UILabel!
+    
+    @IBOutlet weak var v2InspectVal: UILabel!
+    @IBOutlet weak var v3InspectVal: UILabel!
+    
+    @IBOutlet weak var v2InspectOutput: UILabel!
+    @IBOutlet weak var v3InspectOutput: UILabel!
+    
+    @IBOutlet weak var v1Correct: UILabel!
+    @IBOutlet weak var v2Correct: UILabel!
+    @IBOutlet weak var v3Correct: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
-        data.v3 = Float(forHeader.mainV3)
-        updateOutlets()
-        setCurrentIns(0)
         
+        // Do any additional setup after loading the view.
+        mainV3.text = String(forHeader.mainV3)
+        forInitV1P.text = String(forHeader.forInitV1P)
+        forInitV2P.text = String(forHeader.forInitV2P)
+        forInitV1Condition.text = forHeader.forInitV1Condition
+        forInitV1NumberField.text = String(forHeader.forInitV1NumberField)
+        forInitV1IncDec.text = forHeader.forV1IncDec
+        forInitV2IncDec.text = forHeader.forV2IncDec
+        
+        forV1IncDec.text = forHeader.forV1IncDec
+        forV2IncDec.text = forHeader.forV2IncDec
+        forV3Mutation.text = forHeader.forV3Mutation
+        forV3NumberField.text = String(forHeader.forV3NumberField)
+        coutField1.text = forHeader.coutField1
+        coutField2.text = forHeader.coutField2
+        coutField3.text = forHeader.coutField3
+        
+        ifConditionP1.text = forHeader.ifConditionP1
+        ifConditionP2.text = forHeader.ifConditionP2
+        ifV1IncDec.text = forHeader.ifV1IncDec
+        ifV2IncDec.text = forHeader.ifV2IncDec
+        ifV3Mutation.text = forHeader.ifV3Mutation
+        ifV3NumberField.text = String(forHeader.ifV3NumberField)
+        
+        //variable name load
+        v3start.text = "int "+forHeader.nombreV3+" ="
+        v1ForDec.text = "for ( int "+forHeader.nombreV1+"=  "
+        v2ForDec.text = "int "+forHeader.nombreV2+" ="
+        v1ForCompare.text = forHeader.nombreV1
+        v1ForCambio.text = forHeader.nombreV1
+        v2ForCambio.text = forHeader.nombreV2
+        v1ForBody.text = forHeader.nombreV1
+        v2ForBody.text = forHeader.nombreV2
+        v3ForBody.text = forHeader.nombreV3
+        ifV1Compare.text = "if ("+forHeader.nombreV1
+        v1IF.text = forHeader.nombreV1
+        v2IF.text = forHeader.nombreV2
+        v3IF.text = forHeader.nombreV3
+        v1Inspect.text = forHeader.nombreV1
+        v2Inspect.text = forHeader.nombreV2
+        v3Inspect.text = forHeader.nombreV3
+        v1Correct.text = forHeader.nombreV1
+        v2Correct.text = forHeader.nombreV2
+        v3Correct.text = forHeader.nombreV3
     }
     
     override func didReceiveMemoryWarning() {
@@ -146,26 +168,55 @@ class ViewControllerOne: UIViewController {
     }
     
     @IBAction func unwindEditar(sender: UIStoryboardSegue){
-        data.v1 = 0
-        data.v2 = 0
-        data.v3 = 0
-//        data.v2 = Float(forHeader.forInitV2P)
-//        data.v3 = Float(forHeader.mainV3)
-        insCout1.text = "-"
-        insCout2.text = "-"
-        insCout3.text = "-"
+        mainV3.text = String(forHeader.mainV3)
+        forInitV1P.text = String(forHeader.forInitV1P)
+        forInitV2P.text = String(forHeader.forInitV2P)
+        forInitV1Condition.text = forHeader.forInitV1Condition
+        forInitV1NumberField.text = String(forHeader.forInitV1NumberField)
+        forInitV1IncDec.text = forHeader.forInitV1IncDec
+        forInitV2IncDec.text = forHeader.forInitV2IncDec
         
-        updateOutlets()
-        updateInspector()
-        executionFinished = false
-        forInitialized = false
-        setCurrentIns(0)
+        forV1IncDec.text = forHeader.forV1IncDec
+        forV2IncDec.text = forHeader.forV2IncDec
+        forV3Mutation.text = forHeader.forV3Mutation
+        forV3NumberField.text = String(forHeader.forV3NumberField)
+        coutField1.text = forHeader.coutField1
+        coutField2.text = forHeader.coutField2
+        coutField3.text = forHeader.coutField3
         
-        quizLb.text = ""
-        quizBck.backgroundColor = UIColor(netHex: 0x2DC289)
+        ifConditionP1.text = forHeader.ifConditionP1
+        ifConditionP2.text = forHeader.ifConditionP2
+        ifV1IncDec.text = forHeader.ifV1IncDec
+        ifV2IncDec.text = forHeader.ifV2IncDec
+        ifV3Mutation.text = forHeader.ifV3Mutation
+        ifV3NumberField.text = String(forHeader.ifV3NumberField)
         
+        //variable name load
+        v3start.text = "int "+forHeader.nombreV3+" ="
+        v1ForDec.text = "for ( int "+forHeader.nombreV1+"=  "
+        v2ForDec.text = "int "+forHeader.nombreV2+" ="
+        v1ForCompare.text = forHeader.nombreV1
+        v1ForCambio.text = forHeader.nombreV1
+        v2ForCambio.text = forHeader.nombreV2
+        v1ForBody.text = forHeader.nombreV1
+        v2ForBody.text = forHeader.nombreV2
+        v3ForBody.text = forHeader.nombreV3
+        ifV1Compare.text = "if ("+forHeader.nombreV1
+        v1IF.text = forHeader.nombreV1
+        v2IF.text = forHeader.nombreV2
+        v3IF.text = forHeader.nombreV3
+        v1Inspect.text = forHeader.nombreV1
+        v2Inspect.text = forHeader.nombreV2
+        v3Inspect.text = forHeader.nombreV3
+        v1Correct.text = forHeader.nombreV1
+        v2Correct.text = forHeader.nombreV2
+        v3Correct.text = forHeader.nombreV3
+        
+        
+        checkActVar()
         
     }
+
     
     // MARK: - Navigation
     
@@ -178,323 +229,65 @@ class ViewControllerOne: UIViewController {
         }
     }
     
-    func updateOutlets() {
-        mainV3.text = String(forHeader.mainV3)
-        
-        forInitV1P.text = String(forHeader.forInitV1P)
-        forInitV2P.text = String(forHeader.forInitV2P)
-        
-        forInitV1Condition.text = forHeader.forInitV1Condition
-        forInitV1NumberField.text = String(forHeader.forInitV1NumberField)
-        
-        forInitV1IncDec.text = forHeader.forInitV1IncDec
-        forInitV2IncDec.text = forHeader.forInitV2IncDec
-        
-        //for body
-        forV1IncDec.text = forHeader.forV1IncDec
-        forV2IncDec.text = forHeader.forV2IncDec
-        forV3Mutation.text = forHeader.forV3Mutation
-        forV3NumberField.text = String(forHeader.forV3NumberField)
-        
-        coutField1.text = forHeader.coutField1
-        coutField2.text = forHeader.coutField2
-        coutField3.text = forHeader.coutField3
-        
-        //if conditional
-        ifConditionP1.text = forHeader.ifConditionP1
-        ifConditionP2.text = forHeader.ifConditionP2
-        
-        //if body
-        ifV1IncDec.text = forHeader.ifV1IncDec
-        ifV2IncDec.text = forHeader.ifV2IncDec
-        ifV3Mutation.text = forHeader.ifV3Mutation
-        ifV3NumberField.text = forHeader.ifV3NumberField
-    }
-    
-    
-    
-    // MARK: - Flow Control
-    
-    @IBAction func play(sender: AnyObject) {
-        if currentInstruction <= arraySize {
-            executeInstruction()
+    func checkActVar() {
+        if !forHeader.actV2 {
+            v2ForDec.hidden = true
+            forInitV2P.hidden = true
+            forInitV2IncDec.hidden = true
+            v2ForCambio.hidden = true
+            forV2IncDec.hidden = true
+            v2ForBody.hidden = true
+            v2IF.hidden = true
+            ifV2IncDec.hidden = true
+            endInitV1.text = ";"
+            endInitV2.hidden = true
+            endPar1.hidden = true
+            endPar2.hidden = false
+            v2InspectVal.hidden = true
+            v2InspectOutput.hidden = true
         }
-    }
-    
-    func executeInstruction() {
-        if !executionFinished {
-                handleInstruction()
-                updateInspector()
-                setCurrentIns(currentInstruction + 1)
+        else {
+            v2ForDec.hidden = false
+            forInitV2P.hidden = false
+            forInitV2IncDec.hidden = false
+            v2ForCambio.hidden = false
+            forV2IncDec.hidden = false
+            v2ForBody.hidden = false
+            v2IF.hidden = false
+            ifV2IncDec.hidden = false
+            endInitV1.text = ","
+            endInitV2.hidden = false
+            endPar1.hidden = false
+            endPar2.hidden = true
+            v2InspectVal.hidden = false
+            v2InspectOutput.hidden = false
         }
         
-    }
-    
-    func handleInstruction() {
-        switch currentInstruction {
-        case 0:
-            data.v3 = Float(forHeader.mainV3)
-            updateInspector()
-        case 1:
-            if !forInitialized {
-                data.v1 = Float(forHeader.forInitV1P)
-                data.v2 = Float(forHeader.forInitV2P)
-                forInitialized = true
-            } else {
-                handleForConditional()
-            }
-            
-            updateInspector()
-        case 2:
-            handleConditional()
-        case 3:
-            handleConditionalInsOne()
-        case 4:
-            handleConditionalInsTwo()
-        case 5:
-            handleConditionalInsThree()
-        case 6:
-            handleLoopInsOne()
-        case 7:
-            handleLoopInsTwo()
-        case 8:
-            handleLoopInsThree()
-        case 9:
-            handleLoopInsCout()
-            
-        default: break
-            
+        if !forHeader.actV3 {
+            v3start.hidden = true
+            v3ForBody.hidden = true
+            v3IF.hidden = true
+            mainV3.hidden = true
+            forV3NumberField.hidden = true
+            forV3Mutation.hidden = true
+            ifV3NumberField.hidden = true
+            ifV3Mutation.hidden = true
+            v3InspectVal.hidden = true
+            v3InspectOutput.hidden = true
         }
-    }
-    
-
-    
-    func handleForConditional() {
-        switch forHeader.forInitV1Condition {
-        case "<":
-            forConditional = data.v1 < Float(forHeader.forInitV1NumberField)
-        case "<=":
-            forConditional = data.v1 <= Float(forHeader.forInitV1NumberField)
-        case ">":
-            forConditional = data.v1 > Float(forHeader.forInitV1NumberField)
-        case ">=":
-            forConditional = data.v1 >= Float(forHeader.forInitV1NumberField)
-        case "==":
-            forConditional = data.v1 == Float(forHeader.forInitV1NumberField)
-        case "!=":
-            forConditional = data.v1 != Float(forHeader.forInitV1NumberField)
-        default: break
-            
-        }
-        
-        if forConditional {
-            switch forHeader.forInitV1IncDec {
-            case "++":
-                data.v1 += 1
-            case "--":
-                data.v1 -= 1
-            default: break
-            }
-            
-            switch forHeader.forInitV2IncDec {
-            case "++":
-                data.v2 += 1
-            case "--":
-                data.v2 -= 1
-            default: break
-            }
-        } else {
-            finalizeExecution()
-        }
-    }
-    
-    func handleConditional() {
-        
-        var number : Float = 0
-        
-        switch forHeader.ifConditionP2 {
-        case "v1":
-            number = data.v1
-        case "v2":
-            number = data.v2
-        case "v3":
-            number = data.v3
-        default: break
-        }
-        switch forHeader.ifConditionP1 {
-        case "<":
-            ifConditional = data.v1 < number
-        case "<=":
-            ifConditional = data.v1 <= number
-        case ">":
-            ifConditional = data.v1 > number
-        case ">=":
-            ifConditional = data.v1 >= number
-        case "==":
-            ifConditional = data.v1 == number
-        case "!=":
-            ifConditional = data.v1 != number
-        default: break
-        }
-        
-        if !ifConditional {
-            setCurrentIns(5)
-        } else {
-            setCurrentIns(2)
+        else {
+            v3start.hidden = false
+            v3ForBody.hidden = false
+            v3IF.hidden = false
+            mainV3.hidden = false
+            forV3NumberField.hidden = false
+            forV3Mutation.hidden = false
+            ifV3NumberField.hidden = false
+            ifV3Mutation.hidden = false
+            v3InspectVal.hidden = false
+            v3InspectOutput.hidden = false
         }
 
-    }
-    
-    func handleConditionalInsOne() {
-        
-        switch forHeader.ifV1IncDec {
-        case "++":
-            data.v1 += 1
-        case "--":
-            data.v1 -= 1
-        default: break
-        }
-        
-    }
-    
-    func handleConditionalInsTwo() {
-        switch forHeader.ifV2IncDec {
-        case "++":
-            data.v2 += 1
-        case "--":
-            data.v2 -= 1
-        default: break
-        }
-    }
-    
-    func handleConditionalInsThree() {
-        var number : Float = 0
-        switch forHeader.ifV3NumberField {
-        case "v1":
-            number = data.v1
-        case "v2":
-            number = data.v2
-        case "v3":
-            number = data.v3
-        default: break;
-        }
-        
-        switch forHeader.ifV3Mutation {
-        case "+=":
-            data.v3 += number
-        case "-=":
-            data.v3 -= number
-        default: break
-        }
-        
-        
-    }
-    
-    func handleLoopInsOne() {
-        switch forHeader.forV1IncDec {
-        case "++":
-            data.v1 += 1
-        case "--":
-            data.v1 -= 1
-        default: break
-        }
-        
-    }
-    
-    func handleLoopInsTwo() {
-        switch forHeader.forV2IncDec {
-        case "++":
-            data.v2 += 1
-        case "--":
-            data.v2 -= 1
-        default: break
-        }
-        
-    }
-    
-    func handleLoopInsThree() {
-        
-        switch forHeader.forV3Mutation {
-        case "+=":
-            data.v3 += Float(forHeader.forV3NumberField)
-        case "-=":
-            data.v3 -= Float(forHeader.forV3NumberField)
-        default: break
-        }
-        
-    }
-    
-    func handleLoopInsCout() {
-        switch forHeader.coutField1 {
-        case "v1":
-            insCout1.text = String(data.v1)
-        case "v2":
-            insCout1.text = String(data.v2)
-        case "v3":
-            insCout1.text = String(data.v3)
-        default:break
-            
-        }
-        
-        switch forHeader.coutField2 {
-        case "v1":
-            insCout2.text = String(data.v1)
-        case "v2":
-            insCout2.text = String(data.v2)
-        case "v3":
-            insCout2.text = String(data.v3)
-        default:break
-            
-        }
-        
-        switch forHeader.coutField3 {
-        case "v1":
-            insCout3.text = String(data.v1)
-        case "v2":
-            insCout3.text = String(data.v2)
-        case "v3":
-            insCout3.text = String(data.v3)
-        default:break
-            
-        }
-        
-        
-        setCurrentIns(0)
-        
-    }
-    
-    func updateInspector() {
-        
-        InsV1Val.text = String(data.v1)
-        InsV2Val.text = String(data.v2)
-        InsV3Val.text = String(data.v3)
-    }
-    
-    func setCurrentIns(num: Int) {
-        if !executionFinished {
-            currentInstruction = num
-            
-            for pointer in pointerCollection! {
-                pointer.hidden = true
-            }
-            pointerCollection![num].hidden = false
-        }
-    }
-    
-    func finalizeExecution() {
-        executionFinished = true
-        for pointer in pointerCollection! {
-            pointer.hidden = true
-        }
-        
-        if data.v1 == Float(quizv1.text!)! && data.v2 == Float(quizv2.text!)! && data.v3 == Float(quizv3.text!)! {
-            quizLb.text = "Correcto"
-            quizBck.backgroundColor = UIColor(netHex: 0x2DC289)
-        } else {
-            quizLb.text = "Incorrecto"
-            quizBck.backgroundColor = UIColor(netHex: 0xDE3746)
-        }
-        
     }
 
     
