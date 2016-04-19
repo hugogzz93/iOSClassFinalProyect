@@ -364,7 +364,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5V-Wf-6Q7">
                                 <rect key="frame" x="466" y="681" width="253" height="58"/>
-                                <color key="backgroundColor" red="0.87055407070000002" green="0.21710526320000001" blue="0.27341180100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.87058823529411766" green="0.21568627450980393" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
                                 <state key="normal" title="Configurar Ciclo">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -465,7 +465,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.17655719331611255" green="0.76107772435897436" blue="0.53728061229865698" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1764705882352941" green="0.76078431372549016" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="277" id="8qR-gH-l1s"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="220" id="huP-tt-eAQ"/>

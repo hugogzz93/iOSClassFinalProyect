@@ -10,23 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482740810.148677"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
-            landmarkName = "handleForConditional()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482740810.148677"
+            timestampString = "482768575.916626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "276"
@@ -42,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482740810.148677"
+            timestampString = "482768575.916626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "handleForConditional()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +42,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482740810.148677"
+            timestampString = "482768575.916626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "handleForConditional()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSProyectoFinal/ViewControllerOne.swift"
+            timestampString = "482768575.916626"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "handleConditional()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482740810.148677"
+            timestampString = "482768575.916626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "handleConditional()"
             landmarkType = "5">
          </BreakpointContent>

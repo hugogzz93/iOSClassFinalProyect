@@ -25,6 +25,20 @@ extension UIViewController {
     }
 }
 
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
+}
+
 class ViewControllerOne: UIViewController {
     
     var forHeader = ForHeader(
@@ -146,6 +160,9 @@ class ViewControllerOne: UIViewController {
         executionFinished = false
         forInitialized = false
         setCurrentIns(0)
+        
+        quizLb.text = ""
+        quizBck.backgroundColor = UIColor(netHex: 0x2DC289)
         
         
     }
@@ -472,10 +489,10 @@ class ViewControllerOne: UIViewController {
         
         if data.v1 == Float(quizv1.text!)! && data.v2 == Float(quizv2.text!)! && data.v3 == Float(quizv3.text!)! {
             quizLb.text = "Correcto"
-            quizBck.backgroundColor = UIColor.greenColor()
+            quizBck.backgroundColor = UIColor(netHex: 0x2DC289)
         } else {
             quizLb.text = "Incorrecto"
-            quizBck.backgroundColor = UIColor.redColor()
+            quizBck.backgroundColor = UIColor(netHex: 0xDE3746)
         }
         
     }
