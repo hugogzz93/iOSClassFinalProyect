@@ -14,6 +14,17 @@ struct Data {
     var v3 : Float = 0
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class ViewControllerOne: UIViewController {
     
     var forHeader = ForHeader(
@@ -46,6 +57,8 @@ class ViewControllerOne: UIViewController {
     let arraySize = 10
     var forConditional = true
     var ifConditional = true
+    var executionFinished = false
+    var forInitialized = false
     
     var data = Data()
     
@@ -95,8 +108,10 @@ class ViewControllerOne: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        playButton.setBackgroundImage(btnImage, forState: UIControlState.Normal)
+        self.hideKeyboardWhenTappedAround()
+        data.v3 = Float(forHeader.mainV3)
         updateOutlets()
+        setCurrentIns(0)
         
     }
     
@@ -106,7 +121,15 @@ class ViewControllerOne: UIViewController {
     }
     
     @IBAction func unwindEditar(sender: UIStoryboardSegue){
+        data.v1 = Float(forHeader.forInitV1P)
+//        data.v2 = Float(forHeader.forInitV2P)
+//        data.v3 = Float(forHeader.mainV3)
         updateOutlets()
+        updateInspector()
+        setCurrentIns(0)
+        executionFinished = false
+        forInitialized = false
+        
         
     }
     
@@ -165,16 +188,27 @@ class ViewControllerOne: UIViewController {
     }
     
     func executeInstruction() {
-        handleInstruction()
-        updateInspector()
-        setCurrentIns(currentInstruction + 1)
+        if !executionFinished {
+                setCurrentIns(currentInstruction + 1)
+                handleInstruction()
+                updateInspector()
+        }
         
     }
     
     func handleInstruction() {
         switch currentInstruction {
+        case 0:
+            data.v3 = Float(forHeader.mainV3)
+            updateInspector()
         case 1:
+            if !forInitialized {
+                data.v1 = Float(forHeader.forInitV1P)
+                data.v2 = Float(forHeader.forInitV2P)
+                forInitialized = true
+            }
             handleForConditional()
+            updateInspector()
         case 2:
             handleConditional()
         case 3:
@@ -200,7 +234,7 @@ class ViewControllerOne: UIViewController {
 
     
     func handleForConditional() {
-        switch forInitV1Condition {
+        switch forHeader.forInitV1Condition {
         case "<":
             forConditional = data.v1 < Float(forHeader.forInitV1NumberField)
         case "<=":
@@ -233,6 +267,8 @@ class ViewControllerOne: UIViewController {
                 data.v2 -= 1
             default: break
             }
+        } else {
+            finalizeExecution()
         }
     }
     
@@ -249,7 +285,6 @@ class ViewControllerOne: UIViewController {
             number = data.v3
         default: break
         }
-        
         switch forHeader.ifConditionP1 {
         case "<":
             ifConditional = data.v1 < number
@@ -264,6 +299,10 @@ class ViewControllerOne: UIViewController {
         case "!=":
             ifConditional = data.v1 != number
         default: break
+        }
+        
+        if !ifConditional {
+            setCurrentIns(5)
         }
 
     }
@@ -310,6 +349,7 @@ class ViewControllerOne: UIViewController {
         default: break
         }
         
+        
     }
     
     func handleLoopInsOne() {
@@ -348,7 +388,8 @@ class ViewControllerOne: UIViewController {
     
     func handleLoopInsCout() {
         
-        setCurrentIns(1)
+        
+        setCurrentIns(0)
         
     }
     
@@ -366,6 +407,14 @@ class ViewControllerOne: UIViewController {
             pointer.hidden = true
         }
         pointerCollection![num].hidden = false
+    }
+    
+    func finalizeExecution() {
+        executionFinished = true
+        for pointer in pointerCollection! {
+            pointer.hidden = true
+        }
+        
     }
 
     

@@ -104,7 +104,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        self.hideKeyboardWhenTappedAround() 
         mainV3.text = String(ForConfigHeader.mainV3)
         
         forInitV1P.text = String(ForConfigHeader.forInitV1P)
@@ -239,14 +239,19 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView.tag == 0 {
+            self.activeTextField.text = pickerExpressions[row]
             return pickerExpressions[row]
         } else if pickerView.tag == 1 {
+            self.activeTextField.text = pickerVariables[row]
             return pickerVariables[row]
         } else if pickerView.tag == 2 {
+            self.activeTextField.text = pickerIncrementDecrement[row]
             return pickerIncrementDecrement[row]
         } else if pickerView.tag == 3 {
+            self.activeTextField.text = pickerMutations[row]
             return pickerMutations[row]
         }else if pickerView.tag == 4 {
+            self.activeTextField.text = pickerIncrementDecrement2[row]
             return pickerIncrementDecrement2[row]
         }
         return ""
