@@ -21,28 +21,37 @@ struct ForHeader {
     var forInitV1NumberField: Int = 10
     
     var forInitV1IncDec: String = "++"
-    var forInitV2IncDec: String = "--"
+    var forInitV2IncDec: String = "++"
     
     //for body
-    var forV1IncDec: String = "--"
+    var forV1IncDec: String = "++"
     var forV2IncDec: String = "++"
-    var forV3Mutation: String = "-="
+    var forV3Mutation: String = "+="
     var forV3NumberField: Int = 2
     
     var coutField1: String = "v1"
-    var coutField2: String = "v2"
-    var coutField3: String = "v3"
+    var coutField2: String = "v1"
+    var coutField3: String = "v1"
     
     //if conditional
-    var ifConditionP1: String = ">="
-    var ifConditionP2: String = "v2"
+    var ifConditionP1: String = "<"
+    var ifConditionP2: String = "v1"
     
     //if body
     var ifV1IncDec: String = "+="
-    var ifV2IncDec: String = "--"
+    var ifV2IncDec: String = "++"
     var ifV3Mutation: String = "+="
-    var ifV3NumberField: String = "v2"
+    var ifV3NumberField: String = "v1"
     //var ifV3NumberField: Int = 2
+    
+    //nombre de variables
+    var nombreV1: String = "v1"
+    var nombreV2: String = "v2"
+    var nombreV3: String = "v3"
+    
+    //variables activas/inactivas
+    var actV2: Bool = true
+    var actV3: Bool = true
     
 }
 
@@ -54,13 +63,17 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     let pickerIncrementDecrement = ["++", "--"]
     let pickerIncrementDecrement2 = ["++", "--",""]
     let pickerMutations = ["+=", "-=", "*=", "/="]
-    let pickerVariables = ["v1", "v2", "v3"]
+    var pickerVariables = ["v1", "v2", "v3"]
     
     var pickerViewExpressions = UIPickerView()
     var pickerViewVariables = UIPickerView()
     var pickerViewMutations = UIPickerView()
     var pickerViewIncrementDecrement = UIPickerView()
     var pickerViewIncrementDecrement2 = UIPickerView()
+    
+    var tempNameV1 : String!
+    var tempNameV2 : String!
+    var tempNameV3 : String!
     
     @IBOutlet weak var mainV3: UITextField!
     
@@ -81,6 +94,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var forV3Mutation: UITextField!
     @IBOutlet weak var forV3NumberField: UITextField!
     
+    // cout
     @IBOutlet weak var coutField1: UITextField!
     @IBOutlet weak var coutField2: UITextField!
     @IBOutlet weak var coutField3: UITextField!
@@ -94,17 +108,32 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var ifV2IncDec: UITextField!
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
+    
+    //cambio de nombre TextFields
+    
+    @IBOutlet weak var cambioNombreV1: UITextField!
+    @IBOutlet weak var cambioNombreV2: UITextField!
+    @IBOutlet weak var cambioNombreV3: UITextField!
+    
+    //switches de variables
+    @IBOutlet weak var switchV2: UISwitch!
+    @IBOutlet weak var switchV3: UISwitch!
+    
+
 
     //  first responder
     var activeTextField = UITextField()
-
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.hideKeyboardWhenTappedAround() 
+        
+        pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+        cambioNombreV1.delegate = self
+        cambioNombreV2.delegate = self
+        cambioNombreV3.delegate = self
+
         mainV3.text = String(ForConfigHeader.mainV3)
         
         forInitV1P.text = String(ForConfigHeader.forInitV1P)
@@ -128,6 +157,16 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         coutField1.text = ForConfigHeader.coutField1
         coutField2.text = ForConfigHeader.coutField2
         coutField3.text = ForConfigHeader.coutField3
+        
+        cambioNombreV1.text = ForConfigHeader.nombreV1
+        cambioNombreV2.text = ForConfigHeader.nombreV2
+        cambioNombreV3.text = ForConfigHeader.nombreV3
+        tempNameV1 = ForConfigHeader.nombreV1
+        tempNameV2 = ForConfigHeader.nombreV2
+        tempNameV3 = ForConfigHeader.nombreV3
+        
+        switchV2.setOn(ForConfigHeader.actV2, animated: true)
+        switchV3.setOn(ForConfigHeader.actV3, animated: true)
         
         
 //        pickerView protocols
@@ -172,8 +211,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         coutField2.inputView = pickerViewVariables
         coutField3.inputView = pickerViewVariables
         
-        
-        
 //        textfieldDelegation
         forInitV1Condition.delegate = self
         forInitV1IncDec.delegate = self
@@ -192,6 +229,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         coutField1.delegate = self
         coutField2.delegate = self
         coutField3.delegate = self
+        
+        switchV2.addTarget(self, action: #selector(ConfigurationViewController.quitaV2(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        switchV3.addTarget(self, action: #selector(ConfigurationViewController.quitaV3(_:)), forControlEvents: UIControlEvents.ValueChanged)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -234,24 +276,17 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
     }
     
-    
-    
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView.tag == 0 {
-            self.activeTextField.text = pickerExpressions[row]
             return pickerExpressions[row]
         } else if pickerView.tag == 1 {
-            self.activeTextField.text = pickerVariables[row]
             return pickerVariables[row]
         } else if pickerView.tag == 2 {
-            self.activeTextField.text = pickerIncrementDecrement[row]
             return pickerIncrementDecrement[row]
         } else if pickerView.tag == 3 {
-            self.activeTextField.text = pickerMutations[row]
             return pickerMutations[row]
         }else if pickerView.tag == 4 {
-            self.activeTextField.text = pickerIncrementDecrement2[row]
             return pickerIncrementDecrement2[row]
         }
         return ""
@@ -279,6 +314,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let viewInic: ViewControllerOne = segue.destinationViewController as! ViewControllerOne
         
+        ForConfigHeader.mainV3 = Int(mainV3.text!)!
+        
         ForConfigHeader.forInitV1P = Int(forInitV1P.text!)!
         ForConfigHeader.forInitV2P = Int(forInitV2P.text!)!
         ForConfigHeader.forInitV1Condition = forInitV1Condition.text!
@@ -291,32 +328,93 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         ForConfigHeader.forV3Mutation = forV3Mutation.text!
         ForConfigHeader.forV3NumberField = Int(forV3NumberField.text!)!
         
-        ForConfigHeader.coutField1 = coutField1.text!
-        ForConfigHeader.coutField2 = coutField2.text!
-        ForConfigHeader.coutField3 = coutField3.text!
+        //cout
+        //ForConfigHeader.coutField1 = coutField1.text!
+        ForConfigHeader.coutField1 = varNameChange(coutField1.text!)
+        ForConfigHeader.coutField2 = varNameChange(coutField2.text!)
+        ForConfigHeader.coutField3 = varNameChange(coutField3.text!)
         
         //if conditional
         ForConfigHeader.ifConditionP1 = ifConditionP1.text!
-        ForConfigHeader.ifConditionP2 = ifConditionP2.text!
+        ForConfigHeader.ifConditionP2 = varNameChange(ifConditionP2.text!)
+        //ForConfigHeader.ifConditionP2 = ifConditionP2.text!
         
         //if body
         ForConfigHeader.ifV1IncDec = ifV1IncDec.text!
         ForConfigHeader.ifV2IncDec = ifV2IncDec.text!
         ForConfigHeader.ifV3Mutation = ifV3Mutation.text!
-        ForConfigHeader.ifV3NumberField = ifV3NumberField.text!
-        //ForConfigHeader.ifV3NumberField = Int(ifV3NumberField.text!)!
+        ForConfigHeader.ifV3NumberField = varNameChange(ifV3NumberField.text!)
+        //ForConfigHeader.ifV3NumberField = ifV3NumberField.text!
+        
+        
+        //variable names
+        ForConfigHeader.nombreV1 = cambioNombreV1.text!
+        ForConfigHeader.nombreV2 = cambioNombreV2.text!
+        ForConfigHeader.nombreV3 = cambioNombreV3.text!
+        
+        //variable active or inactive
+        quitaV2(switchV2)
+        quitaV3(switchV3)
 
         
         viewInic.forHeader = ForConfigHeader
+    }
+    
+    func quitaV2(sender: UISwitch) {
+        if !sender.on {
+            cambioNombreV2.enabled = false
+            cambioNombreV2.text = ""
+            ForConfigHeader.actV2 = false
+
+        }
+        else {
+            cambioNombreV2.enabled = true
+            cambioNombreV3.text = "v2"
+            ForConfigHeader.actV2 = true
+        }
+    }
+    
+    func quitaV3(sender: UISwitch) {
+        if !sender.on {
+            cambioNombreV3.enabled = false
+            cambioNombreV3.text = ""
+            ForConfigHeader.actV3 = false
+        }
+        else {
+            cambioNombreV3.enabled = true
+            cambioNombreV3.text = "v3"
+            ForConfigHeader.actV3 = true
+        }
+
     }
     
     @IBAction func quitaTeclado()
     {
         self.view.endEditing(true)
     }
-
     
+    func varNameChange(varUsed: String) -> String{
+        switch varUsed {
+        case tempNameV1:
+            return cambioNombreV1.text!
+        case tempNameV2:
+            return cambioNombreV2.text!
+        case tempNameV3:
+            return cambioNombreV3.text!
+        default:
+            return varUsed
+        }
+    }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        let maxLength = 4
+        let currentString: NSString = textField.text!
+        let newString: NSString =
+            currentString.stringByReplacingCharactersInRange(range, withString: string)
+        return newString.length <= maxLength
+    }
 
      // MARK: - Navigation
 
