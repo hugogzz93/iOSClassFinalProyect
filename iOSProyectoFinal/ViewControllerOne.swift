@@ -109,6 +109,14 @@ class ViewControllerOne: UIViewController {
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
     
+    //quiz fields
+    @IBOutlet var quizLb: UILabel!
+    @IBOutlet var quizv1: UITextField!
+    @IBOutlet var quizv2: UITextField!
+    @IBOutlet var quizv3: UITextField!
+    @IBOutlet var quizBck: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -460,6 +468,14 @@ class ViewControllerOne: UIViewController {
         executionFinished = true
         for pointer in pointerCollection! {
             pointer.hidden = true
+        }
+        
+        if data.v1 == Float(quizv1.text!)! && data.v2 == Float(quizv2.text!)! && data.v3 == Float(quizv3.text!)! {
+            quizLb.text = "Correcto"
+            quizBck.backgroundColor = UIColor.greenColor()
+        } else {
+            quizLb.text = "Incorrecto"
+            quizBck.backgroundColor = UIColor.redColor()
         }
         
     }
