@@ -67,6 +67,9 @@ class ViewControllerOne: UIViewController {
     @IBOutlet var InsV1Val: UILabel!
     @IBOutlet var InsV2Val: UILabel!
     @IBOutlet var InsV3Val: UILabel!
+    @IBOutlet var insCout1: UILabel!
+    @IBOutlet var insCout2: UILabel!
+    @IBOutlet var insCout3: UILabel!
     @IBOutlet var playButton: UIButton!
     
     var btnImage = UIImage(named: "play")
@@ -121,14 +124,20 @@ class ViewControllerOne: UIViewController {
     }
     
     @IBAction func unwindEditar(sender: UIStoryboardSegue){
-        data.v1 = Float(forHeader.forInitV1P)
+        data.v1 = 0
+        data.v2 = 0
+        data.v3 = 0
 //        data.v2 = Float(forHeader.forInitV2P)
 //        data.v3 = Float(forHeader.mainV3)
+        insCout1.text = "-"
+        insCout2.text = "-"
+        insCout3.text = "-"
+        
         updateOutlets()
         updateInspector()
-        setCurrentIns(0)
         executionFinished = false
         forInitialized = false
+        setCurrentIns(0)
         
         
     }
@@ -189,9 +198,9 @@ class ViewControllerOne: UIViewController {
     
     func executeInstruction() {
         if !executionFinished {
-                setCurrentIns(currentInstruction + 1)
                 handleInstruction()
                 updateInspector()
+                setCurrentIns(currentInstruction + 1)
         }
         
     }
@@ -206,8 +215,10 @@ class ViewControllerOne: UIViewController {
                 data.v1 = Float(forHeader.forInitV1P)
                 data.v2 = Float(forHeader.forInitV2P)
                 forInitialized = true
+            } else {
+                handleForConditional()
             }
-            handleForConditional()
+            
             updateInspector()
         case 2:
             handleConditional()
@@ -303,6 +314,8 @@ class ViewControllerOne: UIViewController {
         
         if !ifConditional {
             setCurrentIns(5)
+        } else {
+            setCurrentIns(2)
         }
 
     }
@@ -387,6 +400,38 @@ class ViewControllerOne: UIViewController {
     }
     
     func handleLoopInsCout() {
+        switch forHeader.coutField1 {
+        case "v1":
+            insCout1.text = String(data.v1)
+        case "v2":
+            insCout1.text = String(data.v2)
+        case "v3":
+            insCout1.text = String(data.v3)
+        default:break
+            
+        }
+        
+        switch forHeader.coutField2 {
+        case "v1":
+            insCout2.text = String(data.v1)
+        case "v2":
+            insCout2.text = String(data.v2)
+        case "v3":
+            insCout2.text = String(data.v3)
+        default:break
+            
+        }
+        
+        switch forHeader.coutField3 {
+        case "v1":
+            insCout3.text = String(data.v1)
+        case "v2":
+            insCout3.text = String(data.v2)
+        case "v3":
+            insCout3.text = String(data.v3)
+        default:break
+            
+        }
         
         
         setCurrentIns(0)
@@ -401,12 +446,14 @@ class ViewControllerOne: UIViewController {
     }
     
     func setCurrentIns(num: Int) {
-        currentInstruction = num
-        
-        for pointer in pointerCollection! {
-            pointer.hidden = true
+        if !executionFinished {
+            currentInstruction = num
+            
+            for pointer in pointerCollection! {
+                pointer.hidden = true
+            }
+            pointerCollection![num].hidden = false
         }
-        pointerCollection![num].hidden = false
     }
     
     func finalizeExecution() {

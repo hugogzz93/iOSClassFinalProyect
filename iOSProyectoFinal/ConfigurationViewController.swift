@@ -279,6 +279,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let viewInic: ViewControllerOne = segue.destinationViewController as! ViewControllerOne
         
+        ForConfigHeader.mainV3 = Int(mainV3.text!)!
+        
         ForConfigHeader.forInitV1P = Int(forInitV1P.text!)!
         ForConfigHeader.forInitV2P = Int(forInitV2P.text!)!
         ForConfigHeader.forInitV1Condition = forInitV1Condition.text!

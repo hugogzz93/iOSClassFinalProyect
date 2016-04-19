@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482727493.595749"
+            timestampString = "482740378.116676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "handleForConditional()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482727493.595749"
+            timestampString = "482740378.116676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "handleForConditional()"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482727493.595749"
+            timestampString = "482740378.116676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "handleForConditional()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482727493.595749"
+            timestampString = "482740378.116676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "handleConditional()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "482727493.595749"
+            timestampString = "482740378.116676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "handleConditional()"
             landmarkType = "5">
          </BreakpointContent>
