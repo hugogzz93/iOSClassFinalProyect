@@ -34,7 +34,9 @@ class ViewControllerOne: UIViewController {
         ifV3NumberField: "v2",
         nombreV1: "v1",
         nombreV2: "v2",
-        nombreV3: "v3"
+        nombreV3: "v3",
+        actV2:  true,
+        actV3:  true
     )
     
     
@@ -50,6 +52,13 @@ class ViewControllerOne: UIViewController {
     
     @IBOutlet weak var forInitV1IncDec: UITextField!
     @IBOutlet weak var forInitV2IncDec: UITextField!
+    
+    
+    @IBOutlet weak var endInitV1: UILabel!
+    @IBOutlet weak var endInitV2: UILabel!
+    @IBOutlet weak var endPar1: UILabel!
+    @IBOutlet weak var endPar2: UILabel!
+    
     
     //for body
     @IBOutlet weak var forV1IncDec: UITextField!
@@ -94,8 +103,15 @@ class ViewControllerOne: UIViewController {
     @IBOutlet weak var v2Inspect: UILabel!
     @IBOutlet weak var v3Inspect: UILabel!
     
-    @IBOutlet weak var v1Correct: UILabel!
+    @IBOutlet weak var v2InspectVal: UILabel!
+    @IBOutlet weak var v3InspectVal: UILabel!
     
+    @IBOutlet weak var v2InspectOutput: UILabel!
+    @IBOutlet weak var v3InspectOutput: UILabel!
+    
+    @IBOutlet weak var v1Correct: UILabel!
+    @IBOutlet weak var v2Correct: UILabel!
+    @IBOutlet weak var v3Correct: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +158,8 @@ class ViewControllerOne: UIViewController {
         v2Inspect.text = forHeader.nombreV2
         v3Inspect.text = forHeader.nombreV3
         v1Correct.text = forHeader.nombreV1
+        v2Correct.text = forHeader.nombreV2
+        v3Correct.text = forHeader.nombreV3
     }
     
     override func didReceiveMemoryWarning() {
@@ -191,6 +209,12 @@ class ViewControllerOne: UIViewController {
         v2Inspect.text = forHeader.nombreV2
         v3Inspect.text = forHeader.nombreV3
         v1Correct.text = forHeader.nombreV1
+        v2Correct.text = forHeader.nombreV2
+        v3Correct.text = forHeader.nombreV3
+        
+        
+        checkActVar()
+        
     }
 
     
@@ -203,6 +227,67 @@ class ViewControllerOne: UIViewController {
             viewConfig.ForConfigHeader = forHeader
             
         }
+    }
+    
+    func checkActVar() {
+        if !forHeader.actV2 {
+            v2ForDec.hidden = true
+            forInitV2P.hidden = true
+            forInitV2IncDec.hidden = true
+            v2ForCambio.hidden = true
+            forV2IncDec.hidden = true
+            v2ForBody.hidden = true
+            v2IF.hidden = true
+            ifV2IncDec.hidden = true
+            endInitV1.text = ";"
+            endInitV2.hidden = true
+            endPar1.hidden = true
+            endPar2.hidden = false
+            v2InspectVal.hidden = true
+            v2InspectOutput.hidden = true
+        }
+        else {
+            v2ForDec.hidden = false
+            forInitV2P.hidden = false
+            forInitV2IncDec.hidden = false
+            v2ForCambio.hidden = false
+            forV2IncDec.hidden = false
+            v2ForBody.hidden = false
+            v2IF.hidden = false
+            ifV2IncDec.hidden = false
+            endInitV1.text = ","
+            endInitV2.hidden = false
+            endPar1.hidden = false
+            endPar2.hidden = true
+            v2InspectVal.hidden = false
+            v2InspectOutput.hidden = false
+        }
+        
+        if !forHeader.actV3 {
+            v3start.hidden = true
+            v3ForBody.hidden = true
+            v3IF.hidden = true
+            mainV3.hidden = true
+            forV3NumberField.hidden = true
+            forV3Mutation.hidden = true
+            ifV3NumberField.hidden = true
+            ifV3Mutation.hidden = true
+            v3InspectVal.hidden = true
+            v3InspectOutput.hidden = true
+        }
+        else {
+            v3start.hidden = false
+            v3ForBody.hidden = false
+            v3IF.hidden = false
+            mainV3.hidden = false
+            forV3NumberField.hidden = false
+            forV3Mutation.hidden = false
+            ifV3NumberField.hidden = false
+            ifV3Mutation.hidden = false
+            v3InspectVal.hidden = false
+            v3InspectOutput.hidden = false
+        }
+
     }
 
     
