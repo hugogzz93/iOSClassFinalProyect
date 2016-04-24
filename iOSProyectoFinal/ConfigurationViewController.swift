@@ -24,7 +24,7 @@ struct ForHeader {
     var forInitV2IncDec: String = "--"
     
     //for body
-    var forV1IncDec: String = "--"
+    var forV1IncDec: String = "++"
     var forV2IncDec: String = "++"
     var forV3Mutation: String = "-="
     var forV3NumberField: Int = 2
