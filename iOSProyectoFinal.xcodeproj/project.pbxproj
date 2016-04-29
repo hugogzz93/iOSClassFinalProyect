@@ -31,6 +31,7 @@
 		9A58EF8A1C9091C80018572C /* ViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerOne.swift; sourceTree = "<group>"; };
 		9A8F3D5D1CCC5070001BDCEB /* ViewFull.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFull.swift; sourceTree = "<group>"; };
 		9A8F3D5F1CCC5247001BDCEB /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		9A8F3D611CCC5D16001BDCEB /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		9A976E6D1CB325E7006F901B /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,6 +49,7 @@
 		9A58EF4E1C8E7FA60018572C = {
 			isa = PBXGroup;
 			children = (
+				9A8F3D611CCC5D16001BDCEB /* MyPlayground.playground */,
 				9A58EF591C8E7FA60018572C /* iOSProyectoFinal */,
 				9A58EF581C8E7FA60018572C /* Products */,
 			);

@@ -46,13 +46,7 @@ class ViewFull: View {
     @IBOutlet weak var ifV2IncDec: UITextField!
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
-    
-    //quiz fields
-    @IBOutlet var quizLb: UILabel!
-    @IBOutlet var quizv1: UITextField!
-    @IBOutlet var quizv2: UITextField!
-    @IBOutlet var quizv3: UITextField!
-    @IBOutlet var quizBck: UIView!
+
 
 	// MARK: Protocol
 
@@ -160,7 +154,7 @@ class ViewFull: View {
 
     func handleIfIns(Ins: Int) {
     	var varNames = Array<String>(), sign = ""
-    	var instruction = (String, Array<String>) -> Float
+        var instruction: (String, Array<String>) -> Float = mutation
     	switch Ins {
 	    	case 1: 
 	    		varNames = ["v1"]
@@ -177,33 +171,33 @@ class ViewFull: View {
 	    	default:break
     	}
 
-    	updateVariable(varNames, sign, instruction)
+    	updateVariable(varNames, sign: sign, instruction: instruction)
     }
 
     func handleLoopIns(Ins: Int) {
     	var varNames = Array<String>(), sign = ""
-    	var instruction = () -> ()
+    	var instruction: (String, Array<String>) -> Float = mutation
     	switch Ins {
 	    	case 1: 
 	    		varNames = ["v1"]
 	    		sign = forHeader.forV1IncDec
-	    		instruction = mutation()
+	    		instruction = mutation
 	    	case 2: 
 	    		varNames = ["v2"]
 	    		sign = forHeader.forV2IncDec
-	    		instruction = mutation()
+	    		instruction = mutation
 	    	case 3: 
-	    		varNames = ["v3", forHeader.forV3NumberField]
+	    		varNames = ["v3", String(forHeader.forV3NumberField)]
 	    		sign = forHeader.forV3Mutation
-	    		instruction = expression()
+	    		instruction = expression
 	    	default:break
     	}
 
-    	updateVariable(varNames, sign, instruction)
+    	updateVariable(varNames, sign: sign, instruction: instruction)
     }
 
     // MARK: Flow Control
-    func setCurrentIns(num: Int) {
+    override func setCurrentIns(num: Int) {
         if !executionFinished {
             delegate.setCurrentIns(num)
             

@@ -88,7 +88,6 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
     
-    
     // MARK: - Flow Control
     
     @IBAction func play(sender: AnyObject) {
@@ -116,7 +115,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
     func executionFinished() -> Bool {
-        return viewList![currentView].executionFinished()
+        return viewList![currentView].getExecutionFinished()
     }
     
 //    MARK: Quiz View

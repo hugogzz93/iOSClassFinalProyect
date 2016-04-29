@@ -40,7 +40,7 @@ class View: UIView, ControllerDelegate {
     //MARK: Operation Handlers
 
     func binaryOperation(operatorSign: String, leftOperand: Float, rightOperand: Float) -> Bool {
-    	var result : Bool
+    	var result : Bool = false
     	switch operatorSign {
 	        case "<":
 	            result = leftOperand < rightOperand
