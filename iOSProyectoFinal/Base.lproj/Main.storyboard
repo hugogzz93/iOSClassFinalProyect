@@ -289,7 +289,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbN-sR-Cq4">
-                                        <rect key="frame" x="63" y="253" width="45" height="21"/>
+                                        <rect key="frame" x="63" y="249" width="45" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -620,45 +620,16 @@
                         <outlet property="InsV1Val" destination="WvP-0m-WGq" id="38K-ix-avU"/>
                         <outlet property="InsV2Val" destination="e0L-Dv-ht3" id="HXv-6x-tlH"/>
                         <outlet property="InsV3Val" destination="4WY-JJ-LFt" id="gHa-BF-mHU"/>
-                        <outlet property="coutField1" destination="Mc9-A9-wJ4" id="EP1-Pg-pJp"/>
-                        <outlet property="coutField2" destination="zWH-M5-xL4" id="fDX-Ei-QXt"/>
-                        <outlet property="coutField3" destination="oyK-v4-iQr" id="Lzn-n5-PEi"/>
-                        <outlet property="forInitV1Condition" destination="68o-SX-T6I" id="3oQ-gr-Rdw"/>
-                        <outlet property="forInitV1IncDec" destination="A5d-Mz-CqM" id="KII-dZ-GQJ"/>
-                        <outlet property="forInitV1NumberField" destination="osa-vk-X2z" id="LKr-02-ma8"/>
-                        <outlet property="forInitV1P" destination="sed-CU-qab" id="S2I-Vt-C20"/>
-                        <outlet property="forInitV2IncDec" destination="AUj-XJ-33w" id="wmP-ff-IET"/>
-                        <outlet property="forInitV2P" destination="0LF-o8-fWe" id="zFF-Yw-EqV"/>
-                        <outlet property="forV1IncDec" destination="DJv-6b-XCz" id="Wcv-vf-dJS"/>
-                        <outlet property="forV2IncDec" destination="Atx-P0-BbV" id="Bg8-FF-ekK"/>
-                        <outlet property="forV3Mutation" destination="BE7-Fa-Kph" id="4Bx-E2-Ufo"/>
-                        <outlet property="forV3NumberField" destination="q36-5a-kTJ" id="e7N-zz-hmP"/>
-                        <outlet property="ifConditionP1" destination="luL-Mx-pPp" id="lnh-QD-hg5"/>
-                        <outlet property="ifConditionP2" destination="mke-iE-U4g" id="PSU-OM-LoW"/>
-                        <outlet property="ifV1IncDec" destination="Y2R-8N-txy" id="vqT-KL-IEv"/>
-                        <outlet property="ifV2IncDec" destination="sdu-XA-Vti" id="sEa-3m-dm0"/>
-                        <outlet property="ifV3Mutation" destination="zKQ-aI-YIH" id="FYg-Vw-Jbq"/>
-                        <outlet property="ifV3NumberField" destination="ByK-r8-wBk" id="Kty-cH-sGu"/>
-                        <outlet property="insCout1" destination="wbN-sR-Cq4" id="zbG-Fc-K87"/>
+                        <outlet property="insCout1" destination="wbN-sR-Cq4" id="JoB-Yg-JII"/>
                         <outlet property="insCout2" destination="awc-69-rsY" id="ZI8-Zj-9WF"/>
                         <outlet property="insCout3" destination="AlW-V9-Boy" id="HnH-c2-FHK"/>
-                        <outlet property="mainV3" destination="5lO-3r-Mdz" id="mUF-pU-EOb"/>
                         <outlet property="playButton" destination="41j-72-AaJ" id="CZ0-6Y-zqy"/>
                         <outlet property="quizBck" destination="evd-fW-eT0" id="ESi-w0-XDW"/>
                         <outlet property="quizLb" destination="zfr-J6-Eai" id="xoL-WG-wWO"/>
                         <outlet property="quizv1" destination="ot7-DN-UhW" id="GyY-N0-tFE"/>
                         <outlet property="quizv2" destination="XfZ-mF-L65" id="i2a-bL-Rdt"/>
                         <outlet property="quizv3" destination="gH8-Xb-Cch" id="tZl-e0-are"/>
-                        <outletCollection property="pointerCollection" destination="Htu-aq-8C6" collectionClass="NSMutableArray" id="RzK-F3-Dcd"/>
-                        <outletCollection property="pointerCollection" destination="h6S-pn-RLC" collectionClass="NSMutableArray" id="bkU-1G-mQR"/>
-                        <outletCollection property="pointerCollection" destination="R0M-nO-oHi" collectionClass="NSMutableArray" id="3XQ-fQ-ABv"/>
-                        <outletCollection property="pointerCollection" destination="RFX-GJ-aBe" collectionClass="NSMutableArray" id="cjy-RQ-P6B"/>
-                        <outletCollection property="pointerCollection" destination="GJu-Nb-0GL" collectionClass="NSMutableArray" id="Gn1-gX-dqf"/>
-                        <outletCollection property="pointerCollection" destination="JMc-th-9od" collectionClass="NSMutableArray" id="Aca-nc-UXX"/>
-                        <outletCollection property="pointerCollection" destination="gmj-sN-r4L" collectionClass="NSMutableArray" id="tBU-NB-86o"/>
-                        <outletCollection property="pointerCollection" destination="smb-oK-nD9" collectionClass="NSMutableArray" id="93b-xx-nUE"/>
-                        <outletCollection property="pointerCollection" destination="lmw-zJ-Txq" collectionClass="NSMutableArray" id="orA-QC-81N"/>
-                        <outletCollection property="pointerCollection" destination="bKU-mu-cEe" collectionClass="NSMutableArray" id="CZo-LH-eAc"/>
+                        <outlet property="viewOne" destination="mf9-a0-AmR" id="MuP-YT-9dV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
