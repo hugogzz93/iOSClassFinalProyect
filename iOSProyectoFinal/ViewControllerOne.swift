@@ -17,7 +17,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
     var forHeader = ForHeader()
     
     @IBOutlet var viewOne: View!
-    var viewList: Array<View>?
+    var viewList: Array<View> = []
     var btnImage = UIImage(named: "play")
 
     var currentInstruction = 0
@@ -46,11 +46,10 @@ class ViewControllerOne: UIViewController, ViewHandler {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewList?.append(viewOne)
-        
+        viewOne.delegate = self
+        viewList.append(viewOne)
+        selectView(0)
         self.hideKeyboardWhenTappedAround()
-        setCurrentIns(0)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,16 +65,23 @@ class ViewControllerOne: UIViewController, ViewHandler {
         insCout2.text = "-"
         insCout3.text = "-"
         
-        viewList![currentView].restart()
+        selectView(currentView)
         updateInspector()
-        setCurrentIns(0)
-        
-        quizLb.text = ""
-        quizBck.backgroundColor = UIColor(netHex: 0x2DC289)
+        setQuizStatus(2)
         
         
     }
     
+    func selectView(selectedView : Int) {
+        let activeView = viewList[currentView]
+        activeView.setForHeader(forHeader)
+        activeView.restart()
+        for view in viewList {
+            view.hidden = true
+        }
+        
+        viewList[selectedView].hidden = false
+    }
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -95,10 +101,11 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
     func executeInstruction() {
-        if executionFinished() {
-                viewList![currentView].executeInstruction()
-                updateInspector()
-                setCurrentIns(currentInstruction + 1)
+        if !executionFinished() {
+            viewList[currentView].executeInstruction()
+            updateInspector()
+        } else {
+            updateQuiz()
         }
         
     }
@@ -108,18 +115,18 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
     func updateInspector() {
-        let data = viewList![currentView].getData()
+        let data = viewList[currentView].getData()
         InsV1Val.text = String(data.v1)
         InsV2Val.text = String(data.v2)
         InsV3Val.text = String(data.v3)
     }
     
     func executionFinished() -> Bool {
-        return viewList![currentView].getExecutionFinished()
+        return viewList[currentView].getExecutionFinished()
     }
     
 //    MARK: Quiz View
-    func setStatus(type: Int) {
+    func setQuizStatus(type: Int) {
         switch type {
         case 0:
             updateQuizView("Correcto", hexCode: COLOR_GREEN)
@@ -137,7 +144,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
     func isQuizCorrect() -> Bool {
-        let data = viewList![currentView].getData()
+        let data = viewList[currentView].getData()
         return data.v1 == Float(quizv1.text!)! && data.v2 == Float(quizv2.text!)! && data.v3 == Float(quizv3.text!)!
     }
     
@@ -157,14 +164,8 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
     func updateQuiz() {
-        if isQuizCorrect() {
-            setStatus(0)
-        } else {
-            setStatus(1)
-        }
+        setQuizStatus(isQuizCorrect() ? 0 : 1)
     }
-
-    
     
 }
 

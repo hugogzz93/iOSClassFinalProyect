@@ -20,10 +20,16 @@ protocol ControllerDelegate {
     func getExecutionFinished() -> Bool
     func getData() -> Data
     func restart()
+    func setForHeader(data: ForHeader)
+}
+
+enum ViewError: ErrorType {
+    case nameNotFound
 }
 
 
 class View: UIView, ControllerDelegate {
+    let FOR_START = 1
 
 	var forHeader = ForHeader()
     
@@ -73,8 +79,10 @@ class View: UIView, ControllerDelegate {
     }
 
     func expression(sign: String, operands: Array<String>) -> Float {
+        let dataResult = getData(operands[1])
+        
     	var leftOperand = getData(operands[0])
-    	let rightOperand : Float = NSString(string: operands[1]).floatValue
+        let rightOperand =  dataResult != -1 ? dataResult : NSString(string: operands[1]).floatValue
 
     	switch sign {
 	        case "+=":
@@ -117,17 +125,21 @@ class View: UIView, ControllerDelegate {
     }
 
     //MARK: Concrete Methods
+    func currentInstruction() -> Int {
+        return delegate.getCurrentInstruction()
+    }
     
     func finalizeExecution() {
+        print("Execution finalized")
         executionFinished = true
         setCurrentArrow(-1)
     }
 
-    func handleCoutIns() {
+    func handleCoutIns() -> Int {
         coutHandler("v1", position: 0)
         coutHandler("v2", position: 1)
         coutHandler("v3", position: 2)
-        setCurrentIns(0)
+        return forStartInstruction()
     }
 
     func coutHandler(name: String, position: Int) {
@@ -159,7 +171,6 @@ class View: UIView, ControllerDelegate {
     }
 
     //MARK: Protocol ControllerDelegate
-    
     func restart() {
         data.v1 = 0
         data.v2 = 0
@@ -173,7 +184,6 @@ class View: UIView, ControllerDelegate {
     func setCurrentIns(num: Int) {
         if !executionFinished {
             delegate.setCurrentIns(num)
-            
             setCurrentArrow(num)
         }
     }
@@ -185,9 +195,12 @@ class View: UIView, ControllerDelegate {
     func getData() -> Data {
         return data
     }
+    
+    func setForHeader(data: ForHeader) {
+        forHeader = data
+    }
 
     //MARK: Abstract Methods
-
     func updateOutlets() {
     	preconditionFailure("This method must be overridden") 
     }
@@ -196,16 +209,16 @@ class View: UIView, ControllerDelegate {
     	preconditionFailure("This method must be overridden") 
     }
 
-    func handleInstruction() {
+    func handleInstruction(number: Int) {
     	preconditionFailure("This method must be overridden") 
-    }
-
-    func currentInstruction() -> Int {
-        return delegate.getCurrentInstruction()
     }
     
     func getPointerCollection() -> Array<UIView> {
         preconditionFailure("This method must be overridden")
+    }
+    
+    func forStartInstruction() -> Int {
+        return FOR_START
     }
 }
 

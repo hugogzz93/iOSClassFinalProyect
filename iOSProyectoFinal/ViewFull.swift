@@ -10,8 +10,8 @@ import UIKit
 
 class ViewFull: View {
 
-	let AFTER_IF = 5
-	let IF_START = 2
+	let AFTER_IF = 6
+	let IF_START = 3
     
     @IBOutlet var pointerCollection: Array<UIView>?
     
@@ -85,74 +85,85 @@ class ViewFull: View {
 
     override func executeInstruction() {
         if !executionFinished {
-                handleInstruction()
-                setCurrentIns(currentInstruction() + 1)
+                handleInstruction(currentInstruction())
         }   
     }
 
-    func handleInstruction(number: Int) {
+    override func handleInstruction(number: Int) {
+        var nextInstruction = 0
         switch number {
         case 0:
             data.v3 = Float(forHeader.mainV3)
+            nextInstruction = currentInstruction() + 1
         case 1:
             if !forInitialized {
                 data.v1 = Float(forHeader.forInitV1P)
                 data.v2 = Float(forHeader.forInitV2P)
                 forInitialized = true
+                nextInstruction = currentInstruction() + 1
             } else {
-                handleForConditional()
+                nextInstruction = handleForConditional()
             }
             
         case 2:
-            handleConditional()
+            nextInstruction = handleConditional()
         case 3:
-            handleIfIns(1)
+            nextInstruction = handleIfIns(1)
         case 4:
-            handleIfIns(2)
+            nextInstruction = handleIfIns(2)
         case 5:
-            handleIfIns(3)
+            nextInstruction = handleIfIns(3)
         case 6:
-            handleLoopIns(1)
+            nextInstruction = handleLoopIns(1)
         case 7:
-            handleLoopIns(2)
+            nextInstruction = handleLoopIns(2)
         case 8:
-            handleLoopIns(3)
+            nextInstruction = handleLoopIns(3)
         case 9:
-            handleCoutIns()
+            nextInstruction = handleCoutIns()
             
         default: break
             
         }
+        
+         setCurrentIns(nextInstruction)
+    }
+    
+    override func getPointerCollection() -> Array<UIView> {
+        return pointerCollection!
     }
 
     //MARK: Handlers
 
-    func handleForConditional() {
+    func handleForConditional() -> Int {
         
         forConditional = binaryOperation(forHeader.forInitV1Condition, leftOperand: data.v1, rightOperand: Float(forHeader.forInitV1NumberField))
         
         if forConditional {
-            var name = [String(data.v1)], name2 = [String(data.v2)]
-        	data.v1 = mutation(forHeader.forInitV1IncDec, numberName: name)
-        	data.v2 = mutation(forHeader.forInitV2IncDec, numberName: name2)
+        	data.v1 = mutation(forHeader.forInitV1IncDec, numberName: ["v1"])
+        	data.v2 = mutation(forHeader.forInitV2IncDec, numberName: ["v2"])
         } else {
             finalizeExecution()
         }
+        
+        return currentInstruction() + 1
     }
 
-    func handleConditional() {
+    func handleConditional() -> Int {
         var number : Float = 0
+        var nextIns = 0
         number = getData(forHeader.ifConditionP2)
         ifConditional = binaryOperation(forHeader.ifConditionP1, leftOperand: data.v1, rightOperand: number)
         
         if !ifConditional {
-            setCurrentIns(AFTER_IF)
+            nextIns = AFTER_IF
         } else {
-            setCurrentIns(IF_START)
+            nextIns = IF_START
         }
+        return nextIns
     }
 
-    func handleIfIns(Ins: Int) {
+    func handleIfIns(Ins: Int) -> Int {
     	var varNames = Array<String>(), sign = ""
         var instruction: (String, Array<String>) -> Float = mutation
     	switch Ins {
@@ -172,9 +183,10 @@ class ViewFull: View {
     	}
 
     	updateVariable(varNames, sign: sign, instruction: instruction)
+        return currentInstruction() + 1
     }
 
-    func handleLoopIns(Ins: Int) {
+    func handleLoopIns(Ins: Int) -> Int {
     	var varNames = Array<String>(), sign = ""
     	var instruction: (String, Array<String>) -> Float = mutation
     	switch Ins {
@@ -194,6 +206,7 @@ class ViewFull: View {
     	}
 
     	updateVariable(varNames, sign: sign, instruction: instruction)
+        return currentInstruction() + 1
     }
 
     // MARK: Flow Control
@@ -207,13 +220,6 @@ class ViewFull: View {
             pointerCollection![num].hidden = false
         }
     }
-
-// forHeader.ifV1IncDec
-
-    // func updateVariable(name: String, sign: String, instruction: (String, Int) -> Int) {
-    //     updateData(name, instruction(sign, getData(name)))
-    // }
-
-
+    
 
 }
