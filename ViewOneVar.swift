@@ -10,6 +10,7 @@ import UIKit
 
 class ViewOneVar: View {
     
+    let FOR_START = 0
     let AFTER_IF = 5
     let IF_START = 3
     
@@ -111,6 +112,10 @@ class ViewOneVar: View {
         }
         
         setCurrentIns(nextInstruction)
+    }
+    
+    override func forStartInstruction() -> Int {
+        return FOR_START
     }
     
     //MARK: Handlers

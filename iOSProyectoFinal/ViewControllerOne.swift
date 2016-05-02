@@ -23,6 +23,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
     
 //    viewfull arrows
     @IBOutlet var viewFullArrows: [UIImageView]!
+    @IBOutlet var viewOneTwoArrows: [UIImageView]!
     
     var btnImage = UIImage(named: "play")
 
@@ -66,6 +67,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
         super.viewDidLoad()
         
         viewFull.setArrowCollection(viewFullArrows)
+        viewOneVarTwo.setArrowCollection(viewOneTwoArrows)
         viewList.append(viewFull)
         viewList.append(viewOneVar)
         viewList.append(viewOneVarTwo)

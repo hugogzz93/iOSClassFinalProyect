@@ -31,8 +31,6 @@ enum ViewError: ErrorType {
 class View: UIView, ControllerDelegate {
     
     @IBOutlet var pointerCollection: [UIImageView] = []
-    
-    let FOR_START = 1
 
 	var forHeader = ForHeader()
     
@@ -207,6 +205,10 @@ class View: UIView, ControllerDelegate {
     func setForHeader(data: ForHeader) {
         forHeader = data
     }
+    
+    func getPointerCollection() -> [UIImageView] {
+        return pointerCollection
+    }
 
     //MARK: Abstract Methods
     func updateOutlets() {
@@ -221,12 +223,8 @@ class View: UIView, ControllerDelegate {
     	preconditionFailure("This method must be overridden") 
     }
     
-    func getPointerCollection() -> Array<UIView> {
-        preconditionFailure("This method must be overridden")
-    }
-    
     func forStartInstruction() -> Int {
-        return FOR_START
+        preconditionFailure("This method must be overridden")
     }
 }
 

@@ -10,6 +10,7 @@ import UIKit
 
 class ViewOneVarTwo: View {
     
+    let FOR_START = 0
     let AFTER_IF = 4
     let IF_START = 2
     
@@ -81,6 +82,7 @@ class ViewOneVarTwo: View {
         case 0:
             if !forInitialized {
                 data.v1 = Float(forHeader.forInitV1P)
+                data.v2 = Float(forHeader.forInitV2P)
                 forInitialized = true
                 nextInstruction = currentInstruction() + 1
             } else {
@@ -107,6 +109,10 @@ class ViewOneVarTwo: View {
         setCurrentIns(nextInstruction)
     }
     
+    override func forStartInstruction() -> Int {
+        return FOR_START
+    }
+    
     
     //MARK: Handlers
     
@@ -116,6 +122,7 @@ class ViewOneVarTwo: View {
         
         if forConditional {
             data.v1 = mutation(forHeader.forInitV1IncDec, numberName: ["v1"])
+            data.v2 = mutation(forHeader.forInitV2IncDec, numberName: ["v2"])
         } else {
             finalizeExecution()
         }

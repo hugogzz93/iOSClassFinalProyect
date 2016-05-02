@@ -10,6 +10,7 @@ import UIKit
 
 class ViewFull: View {
 
+    let FOR_START = 1
 	let AFTER_IF = 6
 	let IF_START = 3
     
@@ -127,6 +128,10 @@ class ViewFull: View {
         }
         
          setCurrentIns(nextInstruction)
+    }
+    
+    override func forStartInstruction() -> Int {
+        return FOR_START
     }
 
     //MARK: Handlers
