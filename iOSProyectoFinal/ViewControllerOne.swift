@@ -16,7 +16,9 @@ class ViewControllerOne: UIViewController, ViewHandler {
     
     var forHeader = ForHeader()
     
-    @IBOutlet var viewOne: View!
+    @IBOutlet var viewOneVarTwo: ViewOneVarTwo!
+    @IBOutlet var viewOne: ViewFull!
+    @IBOutlet var viewOneVar: ViewOneVar!
     var viewList: Array<View> = []
     var btnImage = UIImage(named: "play")
 
@@ -46,8 +48,14 @@ class ViewControllerOne: UIViewController, ViewHandler {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewOne.delegate = self
         viewList.append(viewOne)
+        viewList.append(viewOneVar)
+        viewList.append(viewOneVarTwo)
+        
+        for view in viewList {
+            view.delegate = self
+        }
+        
         selectView(0)
         self.hideKeyboardWhenTappedAround()
     }
@@ -73,9 +81,10 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
     func selectView(selectedView : Int) {
-        let activeView = viewList[currentView]
+        let activeView = viewList[selectedView]
         activeView.setForHeader(forHeader)
         activeView.restart()
+        
         for view in viewList {
             view.hidden = true
         }

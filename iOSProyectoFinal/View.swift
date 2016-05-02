@@ -159,7 +159,8 @@ class View: UIView, ControllerDelegate {
     
     func setCurrentArrow(num : Int) {
         
-        
+        print("setting current arrow")
+        print(num)
         for pointer in getPointerCollection() {
             pointer.hidden = true
         }
@@ -180,7 +181,7 @@ class View: UIView, ControllerDelegate {
         forInitialized = false
         setCurrentIns(0)
     }
-
+    
     func setCurrentIns(num: Int) {
         if !executionFinished {
             delegate.setCurrentIns(num)
