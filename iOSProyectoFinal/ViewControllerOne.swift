@@ -17,7 +17,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
     var forHeader = ForHeader()
     
     @IBOutlet var viewOneVarTwo: ViewOneVarTwo!
-    @IBOutlet var viewOne: ViewFull!
+    @IBOutlet var viewFull: ViewFull!
     @IBOutlet var viewOneVar: ViewOneVar!
     var viewList: Array<View> = []
     var btnImage = UIImage(named: "play")
@@ -46,9 +46,22 @@ class ViewControllerOne: UIViewController, ViewHandler {
 //    MARK: - Base
     
     override func viewDidLoad() {
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            
+            // this code will be executed if the device is an iPad
+             func supportedInterfaceOrientations() -> Int {
+                return UIInterfaceOrientation.LandscapeLeft.rawValue
+            }
+            
+            func shouldAutorotate() -> Bool {
+                return false
+            }
+            
+        }
+        
         super.viewDidLoad()
         
-        viewList.append(viewOne)
+        viewList.append(viewFull)
         viewList.append(viewOneVar)
         viewList.append(viewOneVarTwo)
         

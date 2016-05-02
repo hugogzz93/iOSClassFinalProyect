@@ -12,7 +12,8 @@ class ViewFull: View {
 
 	let AFTER_IF = 6
 	let IF_START = 3
-    @IBOutlet var pointerCollection: Array<UIView>?
+    
+    @IBOutlet var pointerCollection: [UIImageView]!
     @IBOutlet weak var mainV3: UITextField!    
     
     //for init
@@ -44,6 +45,8 @@ class ViewFull: View {
     @IBOutlet weak var ifV2IncDec: UITextField!
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
+    
+//    arrows
 
 
 	// MARK: Protocol
@@ -206,6 +209,7 @@ class ViewFull: View {
     	updateVariable(varNames, sign: sign, instruction: instruction)
         return currentInstruction() + 1
     }
+
     
 
 }

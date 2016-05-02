@@ -310,7 +310,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
 
         
         viewInic.forHeader = ForConfigHeader
-        viewInic.currentView = 0
+        viewInic.currentView = 1
     }
     
     @IBAction func quitaTeclado()
