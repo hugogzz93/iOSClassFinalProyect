@@ -24,7 +24,7 @@ struct ForHeader {
     var forInitV2IncDec: String = "--"
     
     //for body
-    var forV1IncDec: String = "--"
+    var forV1IncDec: String = "++"
     var forV2IncDec: String = "++"
     var forV3Mutation: String = "-="
     var forV3NumberField: Int = 2
@@ -38,7 +38,7 @@ struct ForHeader {
     var ifConditionP2: String = "v2"
     
     //if body
-    var ifV1IncDec: String = "+="
+    var ifV1IncDec: String = "++"
     var ifV2IncDec: String = "--"
     var ifV3Mutation: String = "+="
     var ifV3NumberField: String = "v2"
@@ -310,6 +310,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
 
         
         viewInic.forHeader = ForConfigHeader
+        viewInic.currentView = 1
     }
     
     @IBAction func quitaTeclado()
