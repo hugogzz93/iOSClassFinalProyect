@@ -13,7 +13,6 @@ class ViewOneVar: View {
     let AFTER_IF = 5
     let IF_START = 3
     
-    @IBOutlet var pointerCollection: Array<UIView>?
     
     @IBOutlet weak var mainV3: UITextField!
     
@@ -112,10 +111,6 @@ class ViewOneVar: View {
         }
         
         setCurrentIns(nextInstruction)
-    }
-    
-    override func getPointerCollection() -> Array<UIView> {
-        return pointerCollection!
     }
     
     //MARK: Handlers

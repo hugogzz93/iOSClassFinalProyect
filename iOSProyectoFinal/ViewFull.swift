@@ -13,7 +13,6 @@ class ViewFull: View {
 	let AFTER_IF = 6
 	let IF_START = 3
     
-    @IBOutlet var pointerCollection: [UIImageView]!
     @IBOutlet weak var mainV3: UITextField!    
     
     //for init
@@ -128,10 +127,6 @@ class ViewFull: View {
         }
         
          setCurrentIns(nextInstruction)
-    }
-    
-    override func getPointerCollection() -> Array<UIView> {
-        return pointerCollection!
     }
 
     //MARK: Handlers

@@ -29,6 +29,9 @@ enum ViewError: ErrorType {
 
 
 class View: UIView, ControllerDelegate {
+    
+    @IBOutlet var pointerCollection: [UIImageView] = []
+    
     let FOR_START = 1
 
 	var forHeader = ForHeader()
@@ -169,6 +172,10 @@ class View: UIView, ControllerDelegate {
             getPointerCollection()[num].hidden = false
         }
         
+    }
+    
+    func setArrowCollection(collection: Array<UIImageView>) {
+        self.pointerCollection = collection
     }
 
     //MARK: Protocol ControllerDelegate

@@ -20,6 +20,10 @@ class ViewControllerOne: UIViewController, ViewHandler {
     @IBOutlet var viewFull: ViewFull!
     @IBOutlet var viewOneVar: ViewOneVar!
     var viewList: Array<View> = []
+    
+//    viewfull arrows
+    @IBOutlet var viewFullArrows: [UIImageView]!
+    
     var btnImage = UIImage(named: "play")
 
     var currentInstruction = 0
@@ -61,6 +65,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
         
         super.viewDidLoad()
         
+        viewFull.setArrowCollection(viewFullArrows)
         viewList.append(viewFull)
         viewList.append(viewOneVar)
         viewList.append(viewOneVarTwo)

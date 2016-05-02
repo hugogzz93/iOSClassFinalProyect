@@ -1129,16 +1129,6 @@
                                     <outlet property="ifV3Mutation" destination="zKQ-aI-YIH" id="LFN-qI-aQU"/>
                                     <outlet property="ifV3NumberField" destination="ByK-r8-wBk" id="sMN-fm-CYB"/>
                                     <outlet property="mainV3" destination="5lO-3r-Mdz" id="lIT-kH-IIG"/>
-                                    <outletCollection property="pointerCollection" destination="Htu-aq-8C6" collectionClass="NSMutableArray" id="uD0-hl-K5g"/>
-                                    <outletCollection property="pointerCollection" destination="Bw1-wO-udD" collectionClass="NSMutableArray" id="ow3-TS-Dyw"/>
-                                    <outletCollection property="pointerCollection" destination="Dub-RX-fPk" collectionClass="NSMutableArray" id="JdW-PS-rG3"/>
-                                    <outletCollection property="pointerCollection" destination="V5a-Ie-Ew9" collectionClass="NSMutableArray" id="xzf-jO-X6u"/>
-                                    <outletCollection property="pointerCollection" destination="hvI-Jd-y5S" collectionClass="NSMutableArray" id="krp-as-YYx"/>
-                                    <outletCollection property="pointerCollection" destination="Jke-ad-Haa" collectionClass="NSMutableArray" id="b73-Uk-3EL"/>
-                                    <outletCollection property="pointerCollection" destination="zd9-xm-tb6" collectionClass="NSMutableArray" id="Om5-Vr-mxh"/>
-                                    <outletCollection property="pointerCollection" destination="OFo-dU-jzf" collectionClass="NSMutableArray" id="OxU-R9-SW1"/>
-                                    <outletCollection property="pointerCollection" destination="3W3-Lw-5Y2" collectionClass="NSMutableArray" id="Mve-hR-EOt"/>
-                                    <outletCollection property="pointerCollection" destination="eRX-Uw-Sjb" collectionClass="NSMutableArray" id="7hU-tW-zqE"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -1179,6 +1169,16 @@
                         <outlet property="viewFull" destination="mf9-a0-AmR" id="zbo-wu-cq9"/>
                         <outlet property="viewOneVar" destination="Lb4-um-BZi" id="Rm4-L1-YTM"/>
                         <outlet property="viewOneVarTwo" destination="cfk-XV-civ" id="o2n-fh-CCM"/>
+                        <outletCollection property="viewFullArrows" destination="Htu-aq-8C6" id="yvh-5H-L2Y"/>
+                        <outletCollection property="viewFullArrows" destination="Bw1-wO-udD" id="Yjf-V3-qeF"/>
+                        <outletCollection property="viewFullArrows" destination="Dub-RX-fPk" id="44H-61-gVb"/>
+                        <outletCollection property="viewFullArrows" destination="V5a-Ie-Ew9" id="BSK-S0-9fU"/>
+                        <outletCollection property="viewFullArrows" destination="hvI-Jd-y5S" id="UfX-GA-B2F"/>
+                        <outletCollection property="viewFullArrows" destination="Jke-ad-Haa" id="gSl-uj-L0I"/>
+                        <outletCollection property="viewFullArrows" destination="zd9-xm-tb6" id="CsC-MZ-hxT"/>
+                        <outletCollection property="viewFullArrows" destination="OFo-dU-jzf" id="qgP-si-qDh"/>
+                        <outletCollection property="viewFullArrows" destination="3W3-Lw-5Y2" id="5Ks-tJ-qIn"/>
+                        <outletCollection property="viewFullArrows" destination="eRX-Uw-Sjb" id="rD7-1E-g41"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
