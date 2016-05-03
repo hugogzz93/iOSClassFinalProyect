@@ -108,13 +108,8 @@ class ViewOneVar: View {
         var nextInstruction = 0
         switch number {
         case 0:
-            if !forInitialized {
-                data.v3 = Float(forHeader.mainV3)
-                nextInstruction = currentInstruction() + 1
-                forInitialized = true
-            } else {
-                nextInstruction = handleForConditional()
-            }
+            data.v3 = Float(forHeader.mainV3)
+            nextInstruction = currentInstruction() + 1
         case 1:
             if !forInitialized {
                 data.v1 = Float(forHeader.forInitV1P)
@@ -125,28 +120,11 @@ class ViewOneVar: View {
             }
             
         case 2:
-            if !forHeader.actIF {
-                nextInstruction = currentInstruction() + 3
-            }
-            else {
-                nextInstruction = handleConditional()
-            }
-            //nextInstruction = handleConditional()
+            nextInstruction = handleConditional()
         case 3:
-            if !forHeader.actIF {
-                nextInstruction = currentInstruction()
-            }
-            else {
-                nextInstruction = handleIfIns(1)
-            }
+            nextInstruction = handleIfIns(1)
         case 4:
-            if !forHeader.actIF {
-                nextInstruction = currentInstruction()
-            }
-            else {
-                nextInstruction = handleIfIns(3)
-            }
-            
+            nextInstruction = handleIfIns(3)
         case 5:
             nextInstruction = handleLoopIns(1)
         case 6:
@@ -155,6 +133,7 @@ class ViewOneVar: View {
             nextInstruction = handleCoutIns()
             
         default: break
+
             
         }
         
