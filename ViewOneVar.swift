@@ -10,7 +10,7 @@ import UIKit
 
 class ViewOneVar: View {
     
-    let FOR_START = 0
+    let FOR_START = 1
     let AFTER_IF = 5
     let IF_START = 3
     
