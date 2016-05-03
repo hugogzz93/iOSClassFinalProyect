@@ -24,8 +24,6 @@ class ViewControllerOne: UIViewController, ViewHandler {
 //    viewfull arrows
     @IBOutlet var viewFullArrows: [UIImageView]!
     @IBOutlet var viewOneTwoArrows: [UIImageView]!
-    @IBOutlet var viewOneArrows: [UIImageView]!
-
     
     var btnImage = UIImage(named: "play")
 
@@ -49,6 +47,15 @@ class ViewControllerOne: UIViewController, ViewHandler {
     @IBOutlet var quizv3: UITextField!
     @IBOutlet var quizBck: UIView!
     
+    //name labels
+    @IBOutlet weak var v1Inspect: UILabel!
+    @IBOutlet weak var v2Inspect: UILabel!
+    @IBOutlet weak var v3Inspect: UILabel!
+    
+    @IBOutlet weak var v1Correct: UILabel!
+    @IBOutlet weak var v2Correct: UILabel!
+    @IBOutlet weak var v3Correct: UILabel!
+    
     
 //    MARK: - Base
     
@@ -70,8 +77,6 @@ class ViewControllerOne: UIViewController, ViewHandler {
         
         viewFull.setArrowCollection(viewFullArrows)
         viewOneVarTwo.setArrowCollection(viewOneTwoArrows)
-        
-        viewOneVar.setArrowCollection(viewOneArrows)
         viewList.append(viewFull)
         viewList.append(viewOneVar)
         viewList.append(viewOneVarTwo)
@@ -90,18 +95,22 @@ class ViewControllerOne: UIViewController, ViewHandler {
     }
     
 
-
     @IBAction func unwindEditar(sender: UIStoryboardSegue){
 
         insCout1.text = "-"
         insCout2.text = "-"
         insCout3.text = "-"
         
+        v1Inspect.text = forHeader.nombreV1
+        v2Inspect.text = forHeader.nombreV2
+        v3Inspect.text = forHeader.nombreV3
+        v1Correct.text = forHeader.nombreV1
+        v2Correct.text = forHeader.nombreV2
+        v3Correct.text = forHeader.nombreV3
+        
         selectView(currentView)
         updateInspector()
         setQuizStatus(2)
-        
-        
     }
     
     func selectView(selectedView : Int) {

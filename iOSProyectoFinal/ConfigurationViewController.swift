@@ -44,6 +44,16 @@ struct ForHeader {
     var ifV3NumberField: String = "v2"
     //var ifV3NumberField: Int = 2
     
+    //nombre de variables
+    var nombreV1: String = "v1"
+    var nombreV2: String = "v2"
+    var nombreV3: String = "v3"
+    
+    //variables activas/inactivas
+    var actV2: Bool = true
+    var actV3: Bool = true
+    var actIF: Bool = true
+    
 }
 
 class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
@@ -51,16 +61,20 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     var ForConfigHeader: ForHeader!
     
     let pickerExpressions = ["<", "<=", ">", ">=", "==", "!="]
-    let pickerIncrementDecrement = ["++", "--"]
-    let pickerIncrementDecrement2 = ["++", "--",""]
+    let pickerIncrementDecrement = ["++", "--", "+=2", "+=3"]
+    let pickerIncrementDecrement2 = ["++", "--", "+=2","+=3", ""]
     let pickerMutations = ["+=", "-=", "*=", "/="]
-    let pickerVariables = ["v1", "v2", "v3"]
+    var pickerVariables = ["v1", "v2", "v3"]
     
     var pickerViewExpressions = UIPickerView()
     var pickerViewVariables = UIPickerView()
     var pickerViewMutations = UIPickerView()
     var pickerViewIncrementDecrement = UIPickerView()
     var pickerViewIncrementDecrement2 = UIPickerView()
+    
+    var tempNameV1 : String!
+    var tempNameV2 : String!
+    var tempNameV3 : String!
     
     @IBOutlet weak var mainV3: UITextField!
     
@@ -94,17 +108,81 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     @IBOutlet weak var ifV2IncDec: UITextField!
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
+    
+    //cambio de nombre de variables
+    @IBOutlet weak var cambioNombreV1: UITextField!
+    @IBOutlet weak var cambioNombreV2: UITextField!
+    @IBOutlet weak var cambioNombreV3: UITextField!
+    
+    //siwtches de control
+    @IBOutlet weak var switchV2: UISwitch!
+    @IBOutlet weak var switchV3: UISwitch!
+    @IBOutlet weak var switchIF: UISwitch!
 
     //  first responder
     var activeTextField = UITextField()
+    
+    func varNameChange(varUsed: String) -> String{
+        switch varUsed {
+        case tempNameV1:
+            return cambioNombreV1.text!
+        case tempNameV2:
+            return cambioNombreV2.text!
+        case tempNameV3:
+            return cambioNombreV3.text!
+        default:
+            return varUsed
+        }
+    }
+    
+    func quitaV2(sender: UISwitch) {
+        if !sender.on {
+            cambioNombreV2.enabled = false
+            cambioNombreV2.text = ""
+            ForConfigHeader.actV2 = false
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+            
+        }
+        else {
+            cambioNombreV2.enabled = true
+            ForConfigHeader.actV2 = true
+            if cambioNombreV2.text == "" {
+                cambioNombreV2.text = "v2"
+                ForConfigHeader.nombreV2 = "v2"
+            }
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+        }
+    }
+    
+    func quitaV3(sender: UISwitch) {
+        if !sender.on {
+            cambioNombreV3.enabled = false
+            cambioNombreV3.text = ""
+            ForConfigHeader.actV3 = false
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+        }
+        else {
+            cambioNombreV3.enabled = true
+            ForConfigHeader.actV3 = true
+            if cambioNombreV3.text == "" {
+                cambioNombreV3.text = "v3"
+                ForConfigHeader.nombreV3 = "v3"
+            }
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+        }
+        
+    }
 
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.hideKeyboardWhenTappedAround() 
+        self.hideKeyboardWhenTappedAround()
+        pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+        cambioNombreV1.delegate = self
+        cambioNombreV2.delegate = self
+        cambioNombreV3.delegate = self
+        
         mainV3.text = String(ForConfigHeader.mainV3)
         
         forInitV1P.text = String(ForConfigHeader.forInitV1P)
@@ -128,6 +206,18 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         coutField1.text = ForConfigHeader.coutField1
         coutField2.text = ForConfigHeader.coutField2
         coutField3.text = ForConfigHeader.coutField3
+        
+        //load past name
+        cambioNombreV1.text = ForConfigHeader.nombreV1
+        cambioNombreV2.text = ForConfigHeader.nombreV2
+        cambioNombreV3.text = ForConfigHeader.nombreV3
+        tempNameV1 = ForConfigHeader.nombreV1
+        tempNameV2 = ForConfigHeader.nombreV2
+        tempNameV3 = ForConfigHeader.nombreV3
+        
+        switchV2.setOn(ForConfigHeader.actV2, animated: true)
+        switchV3.setOn(ForConfigHeader.actV3, animated: true)
+        switchIF.setOn(ForConfigHeader.actIF, animated: true)
         
         
 //        pickerView protocols
@@ -192,6 +282,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         coutField1.delegate = self
         coutField2.delegate = self
         coutField3.delegate = self
+        
+        switchV2.addTarget(self, action: #selector(ConfigurationViewController.quitaV2(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        switchV3.addTarget(self, action: #selector(ConfigurationViewController.quitaV3(_:)), forControlEvents: UIControlEvents.ValueChanged)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -299,7 +394,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
         //if conditional
         ForConfigHeader.ifConditionP1 = ifConditionP1.text!
-        ForConfigHeader.ifConditionP2 = ifConditionP2.text!
+        if ifConditionP2.text != "" {
+            ForConfigHeader.ifConditionP2 = varNameChange(ifConditionP2.text!)
+        }
+        else {
+            ForConfigHeader.ifConditionP2 = varNameChange("v1")
+        }
         
         //if body
         ForConfigHeader.ifV1IncDec = ifV1IncDec.text!
@@ -307,10 +407,33 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         ForConfigHeader.ifV3Mutation = ifV3Mutation.text!
         ForConfigHeader.ifV3NumberField = ifV3NumberField.text!
         //ForConfigHeader.ifV3NumberField = Int(ifV3NumberField.text!)!
+        
+        //variable names
+        ForConfigHeader.nombreV1 = cambioNombreV1.text!
+        ForConfigHeader.nombreV2 = cambioNombreV2.text!
+        ForConfigHeader.nombreV3 = cambioNombreV3.text!
+        
+        //variable active or inactive
+        quitaV2(switchV2)
+        quitaV3(switchV3)
+        ForConfigHeader.actIF = switchIF.on
 
         
         viewInic.forHeader = ForConfigHeader
-        viewInic.currentView = 1
+        if ForConfigHeader.actV2 {
+            if ForConfigHeader.actV3 {
+                viewInic.currentView = 0
+            }
+            else {
+                viewInic.currentView = 2
+            }
+        }
+        else if ForConfigHeader.actV3 {
+            viewInic.currentView = 1
+        }
+        else {
+            viewInic.currentView = 0
+        }
     }
     
     @IBAction func quitaTeclado()

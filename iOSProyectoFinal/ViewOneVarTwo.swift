@@ -39,6 +39,20 @@ class ViewOneVarTwo: View {
     //if body
     @IBOutlet weak var ifV1IncDec: UITextField!
     @IBOutlet weak var ifV2IncDec: UITextField!
+    
+    //labels
+    @IBOutlet weak var v1ForDec: UILabel!
+    @IBOutlet weak var v2ForDec: UILabel!
+    @IBOutlet weak var v1ForCompare: UILabel!
+    @IBOutlet weak var v1ForCambio: UILabel!
+    @IBOutlet weak var v2ForCambio: UILabel!
+    
+    @IBOutlet weak var v1ForBody: UILabel!
+    @IBOutlet weak var v2ForBody: UILabel!
+    
+    @IBOutlet weak var ifV1Compare: UILabel!
+    @IBOutlet weak var v1IF: UILabel!
+    @IBOutlet weak var v2IF: UILabel!
 
     
     
@@ -68,6 +82,17 @@ class ViewOneVarTwo: View {
         //if body
         ifV1IncDec.text = forHeader.ifV1IncDec
         ifV2IncDec.text = forHeader.ifV2IncDec
+        
+        v1ForDec.text = "for ( int "+forHeader.nombreV1+"="
+        v2ForDec.text = forHeader.nombreV2+"="
+        v1ForCompare.text = ";"+forHeader.nombreV1
+        v1ForCambio.text = ";"+forHeader.nombreV1
+        v2ForCambio.text = ", "+forHeader.nombreV2
+        v1ForBody.text = forHeader.nombreV1
+        v2ForBody.text = forHeader.nombreV2
+        ifV1Compare.text = "if ("+forHeader.nombreV1
+        v1IF.text = forHeader.nombreV1
+        v2IF.text = forHeader.nombreV2
     }
     
     override func executeInstruction() {

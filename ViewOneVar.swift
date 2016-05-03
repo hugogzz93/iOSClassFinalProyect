@@ -10,7 +10,7 @@ import UIKit
 
 class ViewOneVar: View {
     
-    let FOR_START = 1
+    let FOR_START = 0
     let AFTER_IF = 5
     let IF_START = 3
     
@@ -42,6 +42,20 @@ class ViewOneVar: View {
     @IBOutlet weak var ifV3Mutation: UITextField!
     @IBOutlet weak var ifV3NumberField: UITextField!
     
+    //text labels
+    @IBOutlet weak var v3start: UILabel!
+    
+    @IBOutlet weak var v1ForDec: UILabel!
+    @IBOutlet weak var v1ForCompare: UILabel!
+    @IBOutlet weak var v1ForCambio: UILabel!
+    
+    @IBOutlet weak var v1ForBody: UILabel!
+    @IBOutlet weak var v3ForBody: UILabel!
+    
+    @IBOutlet weak var ifV1Compare: UILabel!
+    @IBOutlet weak var v1IF: UILabel!
+    @IBOutlet weak var v3IF: UILabel!
+    
     
     // MARK: Protocol
     
@@ -71,6 +85,17 @@ class ViewOneVar: View {
         ifV1IncDec.text = forHeader.ifV1IncDec
         ifV3Mutation.text = forHeader.ifV3Mutation
         ifV3NumberField.text = forHeader.ifV3NumberField
+        
+        v3start.text = "int "+forHeader.nombreV3+" ="
+        v1ForDec.text = "for ( int "+forHeader.nombreV1+"="
+        v1ForCompare.text = ";"+forHeader.nombreV1
+        v1ForCambio.text = ";"+forHeader.nombreV1
+        v1ForBody.text = forHeader.nombreV1
+        v3ForBody.text = forHeader.nombreV3
+        ifV1Compare.text = "if ("+forHeader.nombreV1
+        v1IF.text = forHeader.nombreV1
+        v3IF.text = forHeader.nombreV3
+
     }
     
     override func executeInstruction() {
@@ -83,8 +108,13 @@ class ViewOneVar: View {
         var nextInstruction = 0
         switch number {
         case 0:
-            data.v3 = Float(forHeader.mainV3)
-            nextInstruction = currentInstruction() + 1
+            if !forInitialized {
+                data.v3 = Float(forHeader.mainV3)
+                nextInstruction = currentInstruction() + 1
+                forInitialized = true
+            } else {
+                nextInstruction = handleForConditional()
+            }
         case 1:
             if !forInitialized {
                 data.v1 = Float(forHeader.forInitV1P)
@@ -95,11 +125,28 @@ class ViewOneVar: View {
             }
             
         case 2:
-            nextInstruction = handleConditional()
+            if !forHeader.actIF {
+                nextInstruction = currentInstruction() + 3
+            }
+            else {
+                nextInstruction = handleConditional()
+            }
+            //nextInstruction = handleConditional()
         case 3:
-            nextInstruction = handleIfIns(1)
+            if !forHeader.actIF {
+                nextInstruction = currentInstruction()
+            }
+            else {
+                nextInstruction = handleIfIns(1)
+            }
         case 4:
-            nextInstruction = handleIfIns(3)
+            if !forHeader.actIF {
+                nextInstruction = currentInstruction()
+            }
+            else {
+                nextInstruction = handleIfIns(3)
+            }
+            
         case 5:
             nextInstruction = handleLoopIns(1)
         case 6:

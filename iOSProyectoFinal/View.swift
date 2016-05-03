@@ -74,6 +74,10 @@ class View: UIView, ControllerDelegate {
                 number += 1
             case "--":
                 number -= 1
+            case "+=2":
+               number += 2
+            case "+=3":
+                number += 3
             default: break
         }
         return number
