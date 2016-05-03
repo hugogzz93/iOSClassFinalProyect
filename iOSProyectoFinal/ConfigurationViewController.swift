@@ -137,11 +137,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func quitaV2(sender: UISwitch) {
         if !sender.on {
+            refreshTextFieldsNoV2()
             cambioNombreV2.enabled = false
             cambioNombreV2.text = ""
             ForConfigHeader.actV2 = false
-            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
-            
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV3]
         }
         else {
             cambioNombreV2.enabled = true
@@ -156,10 +156,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func quitaV3(sender: UISwitch) {
         if !sender.on {
+            refreshTextFieldsNoV3()
             cambioNombreV3.enabled = false
             cambioNombreV3.text = ""
             ForConfigHeader.actV3 = false
-            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2]
         }
         else {
             cambioNombreV3.enabled = true
@@ -171,6 +172,52 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
         }
         
+    }
+    
+    func refreshTextFieldsNoV2() {
+        if coutField1.text == ForConfigHeader.nombreV2  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField1.text = self.ForConfigHeader.nombreV1})
+        }
+        if coutField2.text == ForConfigHeader.nombreV2  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField2.text = self.ForConfigHeader.nombreV1})
+        }
+        if coutField3.text == ForConfigHeader.nombreV2  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField3.text = self.ForConfigHeader.nombreV1})
+        }
+        if ifConditionP2.text == ForConfigHeader.nombreV2  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ifConditionP2.text = self.ForConfigHeader.nombreV1})
+        }
+        if ifV3NumberField.text == ForConfigHeader.nombreV2  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ifV3NumberField.text = self.ForConfigHeader.nombreV1})
+        }
+    }
+    
+    func refreshTextFieldsNoV3() {
+        if coutField1.text == ForConfigHeader.nombreV3  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField1.text = self.ForConfigHeader.nombreV1})
+        }
+        if coutField2.text == ForConfigHeader.nombreV3  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField2.text = self.ForConfigHeader.nombreV1})
+        }
+        if coutField3.text == ForConfigHeader.nombreV3  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField3.text = self.ForConfigHeader.nombreV1})
+        }
+        if ifConditionP2.text == ForConfigHeader.nombreV3  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ifConditionP2.text = self.ForConfigHeader.nombreV1})
+        }
+        if ifV3NumberField.text == ForConfigHeader.nombreV3  {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ifV3NumberField.text = self.ForConfigHeader.nombreV1})
+        }
     }
 
     
@@ -394,12 +441,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
         //if conditional
         ForConfigHeader.ifConditionP1 = ifConditionP1.text!
-        if ifConditionP2.text != "" {
-            ForConfigHeader.ifConditionP2 = varNameChange(ifConditionP2.text!)
-        }
-        else {
-            ForConfigHeader.ifConditionP2 = varNameChange("v1")
-        }
+        ForConfigHeader.ifConditionP2 = varNameChange(ifConditionP2.text!)
         
         //if body
         ForConfigHeader.ifV1IncDec = ifV1IncDec.text!
