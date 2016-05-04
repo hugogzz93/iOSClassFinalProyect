@@ -430,6 +430,33 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         activeTextField.text = text
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
+        
+            if (!searchNum(mainV3.text!) || !searchNum(forInitV1P.text!) || !searchNum(forInitV2P.text!) || !searchNum(forInitV1NumberField.text!) || !searchNum(forV3NumberField.text!)) {
+                
+                let alertController = UIAlertController(title: "Error de Configuración", message: "No se colocaron números en las casillas correspondientes", preferredStyle: .Alert)
+                
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true, completion:nil)
+                
+                return false
+            }
+                
+            else {
+                refreshTextFieldsName(pastNameV1, num: 1)
+                refreshTextFieldsName(pastNameV2, num: 2)
+                refreshTextFieldsName(pastNameV3, num: 3)
+                
+                return true
+            }
+        }
+        
+        // by default, transition
+  
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let viewInic: ViewControllerOne = segue.destinationViewController as! ViewControllerOne
         
@@ -439,10 +466,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         ForConfigHeader.nombreV1 = cambioNombreV1.text!
         ForConfigHeader.nombreV2 = cambioNombreV2.text!
         ForConfigHeader.nombreV3 = cambioNombreV3.text!
-        
-        refreshTextFieldsName(pastNameV1, num: 1)
-        refreshTextFieldsName(pastNameV2, num: 2)
-        refreshTextFieldsName(pastNameV3, num: 3)
         
         ForConfigHeader.forInitV1P = Int(forInitV1P.text!)!
         ForConfigHeader.forInitV2P = Int(forInitV2P.text!)!
@@ -498,13 +521,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         self.view.endEditing(true)
     }
     
-    @IBAction func updateNames(sender: AnyObject) {
-        refreshTextFieldsName(pastNameV1, num: 1)
-        refreshTextFieldsName(pastNameV2, num: 2)
-        refreshTextFieldsName(pastNameV3, num: 3)
-    }
-    
-
     func refreshTextFieldsName(nameV: String, num: NSNumber) {
         var temp : String!
 
@@ -524,24 +540,19 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         }
         
         if coutField1.text == nameV {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField1.text = temp})
+            self.coutField1.text = temp
         }
         if coutField2.text == nameV {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField2.text = temp})
+            self.coutField2.text = temp
         }
         if coutField3.text == nameV {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField3.text = temp})
+            self.coutField3.text = temp
         }
         if ifConditionP2.text == nameV {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.ifConditionP2.text = temp})
+            self.ifConditionP2.text = temp
         }
         if ifV3NumberField.text == nameV {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.ifV3NumberField.text = temp})
+            self.ifV3NumberField.text = temp
         }
     
     }
@@ -549,6 +560,10 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     func searchNum(input : String) -> Bool{
         let numArray:[Character] = ["1", "2", "3","4", "5", "6","7", "8", "9","0"]
         var hayP : Bool = false
+        
+        if input.isEmpty {
+            return false
+        }
         
         for char in input.characters {
             for num in numArray {
@@ -562,7 +577,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             hayP=false
         }
         
-        return hayP
+        return true
     }
     
 }
