@@ -1280,7 +1280,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uAZ-3N-zm8">
                                 <rect key="frame" x="90" y="24" width="65" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e4e-oa-yeN">
                                 <rect key="frame" x="134" y="79" width="65" height="30"/>
@@ -1551,6 +1551,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vq1-f0-sJq">
+                                <rect key="frame" x="751" y="63" width="135" height="30"/>
+                                <state key="normal" title="Confirmar Nombres"/>
+                                <connections>
+                                    <action selector="updateNames:" destination="xqf-gJ-qR8" eventType="touchUpInside" id="Abo-We-ycD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1588,7 +1595,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfp-OO-9uS" sceneMemberID="firstResponder"/>
                 <exit id="zfp-Jt-Gpl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="221" y="353"/>
+            <point key="canvasLocation" x="284" y="353"/>
         </scene>
     </scenes>
     <resources>

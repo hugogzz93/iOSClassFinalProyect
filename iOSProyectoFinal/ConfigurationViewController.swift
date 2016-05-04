@@ -75,6 +75,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     var tempNameV1 : String!
     var tempNameV2 : String!
     var tempNameV3 : String!
+
+    var pastNameV1 : String!
+    var pastNameV2 : String!
+    var pastNameV3 : String!
+
     
     @IBOutlet weak var mainV3: UITextField!
     
@@ -225,6 +230,9 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
+        
+        //textField(mainV3, shouldChangeCharactersInRange: <#T##NSRange#>, replacementString: <#T##String#>)
+        
         pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
         cambioNombreV1.delegate = self
         cambioNombreV2.delegate = self
@@ -258,6 +266,10 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         cambioNombreV1.text = ForConfigHeader.nombreV1
         cambioNombreV2.text = ForConfigHeader.nombreV2
         cambioNombreV3.text = ForConfigHeader.nombreV3
+        pastNameV1 = ForConfigHeader.nombreV1
+        pastNameV2 = ForConfigHeader.nombreV2
+        pastNameV3 = ForConfigHeader.nombreV3
+        
         tempNameV1 = ForConfigHeader.nombreV1
         tempNameV2 = ForConfigHeader.nombreV2
         tempNameV3 = ForConfigHeader.nombreV3
@@ -423,6 +435,15 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
         ForConfigHeader.mainV3 = Int(mainV3.text!)!
         
+        //variable names
+        ForConfigHeader.nombreV1 = cambioNombreV1.text!
+        ForConfigHeader.nombreV2 = cambioNombreV2.text!
+        ForConfigHeader.nombreV3 = cambioNombreV3.text!
+        
+        refreshTextFieldsName(pastNameV1, num: 1)
+        refreshTextFieldsName(pastNameV2, num: 2)
+        refreshTextFieldsName(pastNameV3, num: 3)
+        
         ForConfigHeader.forInitV1P = Int(forInitV1P.text!)!
         ForConfigHeader.forInitV2P = Int(forInitV2P.text!)!
         ForConfigHeader.forInitV1Condition = forInitV1Condition.text!
@@ -450,17 +471,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         ForConfigHeader.ifV3NumberField = ifV3NumberField.text!
         //ForConfigHeader.ifV3NumberField = Int(ifV3NumberField.text!)!
         
-        //variable names
-        ForConfigHeader.nombreV1 = cambioNombreV1.text!
-        ForConfigHeader.nombreV2 = cambioNombreV2.text!
-        ForConfigHeader.nombreV3 = cambioNombreV3.text!
-        
         //variable active or inactive
         quitaV2(switchV2)
         quitaV3(switchV3)
         ForConfigHeader.actIF = switchIF.on
 
-        
         viewInic.forHeader = ForConfigHeader
         if ForConfigHeader.actV2 {
             if ForConfigHeader.actV3 {
@@ -482,12 +497,72 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     {
         self.view.endEditing(true)
     }
-
     
+    @IBAction func updateNames(sender: AnyObject) {
+        refreshTextFieldsName(pastNameV1, num: 1)
+        refreshTextFieldsName(pastNameV2, num: 2)
+        refreshTextFieldsName(pastNameV3, num: 3)
+    }
     
 
-     // MARK: - Navigation
+    func refreshTextFieldsName(nameV: String, num: NSNumber) {
+        var temp : String!
 
- 
+        switch num {
+        case 1:
+            temp = cambioNombreV1.text
+            break
+        case 2:
+            temp = cambioNombreV2.text
+            break
+        case 3:
+            temp = cambioNombreV3.text
+            break
+        default:
+            temp = cambioNombreV1.text
+            break
+        }
+        
+        if coutField1.text == nameV {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField1.text = temp})
+        }
+        if coutField2.text == nameV {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField2.text = temp})
+        }
+        if coutField3.text == nameV {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coutField3.text = temp})
+        }
+        if ifConditionP2.text == nameV {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ifConditionP2.text = temp})
+        }
+        if ifV3NumberField.text == nameV {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ifV3NumberField.text = temp})
+        }
+    
+    }
+    
+    func searchNum(input : String) -> Bool{
+        let numArray:[Character] = ["1", "2", "3","4", "5", "6","7", "8", "9","0"]
+        var hayP : Bool = false
+        
+        for char in input.characters {
+            for num in numArray {
+                if char == num {
+                    hayP = true
+                }
+            }
+            if !hayP {
+                return hayP
+            }
+            hayP=false
+        }
+        
+        return hayP
+    }
     
 }
