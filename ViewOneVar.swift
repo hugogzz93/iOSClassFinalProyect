@@ -144,6 +144,12 @@ class ViewOneVar: View {
         return FOR_START
     }
     
+    override func handleCoutIns() -> Int {
+        coutHandler(forHeader.coutField1, position: 0)
+        coutHandler(forHeader.coutField2, position: 1)
+        return forStartInstruction()
+    }
+    
     //MARK: Handlers
     
     func handleForConditional() -> Int {
@@ -151,7 +157,7 @@ class ViewOneVar: View {
         forConditional = binaryOperation(forHeader.forInitV1Condition, leftOperand: data.v1, rightOperand: Float(forHeader.forInitV1NumberField))
         
         if forConditional {
-            data.v1 = mutation(forHeader.forInitV1IncDec, numberName: ["v1"])
+            data.v1 = mutation(forHeader.forInitV1IncDec, numberName: [forHeader.nombreV1])
         } else {
             finalizeExecution()
         }
@@ -178,11 +184,11 @@ class ViewOneVar: View {
         var instruction: (String, Array<String>) -> Float = mutation
         switch Ins {
         case 1:
-            varNames = ["v1"]
+            varNames = [forHeader.nombreV1]
             sign = forHeader.ifV1IncDec
             instruction = mutation
         case 3:
-            varNames = ["v3", forHeader.ifV3NumberField]
+            varNames = [forHeader.nombreV3, forHeader.ifV3NumberField]
             sign = forHeader.ifV3Mutation
             instruction = expression
         default:break
@@ -197,11 +203,11 @@ class ViewOneVar: View {
         var instruction: (String, Array<String>) -> Float = mutation
         switch Ins {
         case 1:
-            varNames = ["v1"]
+            varNames = [forHeader.nombreV1]
             sign = forHeader.forV1IncDec
             instruction = mutation
         case 3:
-            varNames = ["v3", String(forHeader.forV3NumberField)]
+            varNames = [forHeader.nombreV3, String(forHeader.forV3NumberField)]
             sign = forHeader.forV3Mutation
             instruction = expression
         default:break

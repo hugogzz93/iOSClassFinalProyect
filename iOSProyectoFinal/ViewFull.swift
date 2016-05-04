@@ -165,6 +165,13 @@ class ViewFull: View {
     override func forStartInstruction() -> Int {
         return FOR_START
     }
+    
+    override func handleCoutIns() -> Int {
+        coutHandler(forHeader.coutField1, position: 0)
+        coutHandler(forHeader.coutField2, position: 1)
+        coutHandler(forHeader.coutField3, position: 2)
+        return forStartInstruction()
+    }
 
     //MARK: Handlers
 
@@ -173,8 +180,8 @@ class ViewFull: View {
         forConditional = binaryOperation(forHeader.forInitV1Condition, leftOperand: data.v1, rightOperand: Float(forHeader.forInitV1NumberField))
         
         if forConditional {
-        	data.v1 = mutation(forHeader.forInitV1IncDec, numberName: ["v1"])
-        	data.v2 = mutation(forHeader.forInitV2IncDec, numberName: ["v2"])
+        	data.v1 = mutation(forHeader.forInitV1IncDec, numberName: [forHeader.nombreV1])
+        	data.v2 = mutation(forHeader.forInitV2IncDec, numberName: [forHeader.nombreV2])
         } else {
             finalizeExecution()
         }
@@ -201,15 +208,15 @@ class ViewFull: View {
         var instruction: (String, Array<String>) -> Float = mutation
     	switch Ins {
 	    	case 1: 
-	    		varNames = ["v1"]
+	    		varNames = [forHeader.nombreV1]
 	    		sign = forHeader.ifV1IncDec
 	    		instruction = mutation
 	    	case 2: 
-	    		varNames = ["v2"]
+	    		varNames = [forHeader.nombreV2]
 	    		sign = forHeader.ifV2IncDec
 	    		instruction = mutation
 	    	case 3: 
-	    		varNames = ["v3", forHeader.ifV3NumberField]
+	    		varNames = [forHeader.nombreV3, forHeader.ifV3NumberField]
 	    		sign = forHeader.ifV3Mutation
 	    		instruction = expression
 	    	default:break
@@ -224,15 +231,15 @@ class ViewFull: View {
     	var instruction: (String, Array<String>) -> Float = mutation
     	switch Ins {
 	    	case 1: 
-	    		varNames = ["v1"]
+	    		varNames = [forHeader.nombreV1]
 	    		sign = forHeader.forV1IncDec
 	    		instruction = mutation
 	    	case 2: 
-	    		varNames = ["v2"]
+	    		varNames = [forHeader.nombreV2]
 	    		sign = forHeader.forV2IncDec
 	    		instruction = mutation
 	    	case 3: 
-	    		varNames = ["v3", String(forHeader.forV3NumberField)]
+	    		varNames = [forHeader.nombreV3, String(forHeader.forV3NumberField)]
 	    		sign = forHeader.forV3Mutation
 	    		instruction = expression
 	    	default:break

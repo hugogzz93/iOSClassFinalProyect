@@ -111,6 +111,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
         v3Correct.text = forHeader.nombreV3
         
         selectView(currentView)
+        prepareQuiz(currentView)
         updateInspector()
         setQuizStatus(2)
     }
@@ -190,6 +191,26 @@ class ViewControllerOne: UIViewController, ViewHandler {
     func isQuizCorrect() -> Bool {
         let data = viewList[currentView].getData()
         return data.v1 == Float(quizv1.text!)! && data.v2 == Float(quizv2.text!)! && data.v3 == Float(quizv3.text!)!
+    }
+    
+    func prepareQuiz(num : Int) {
+        quizv1.text = "0"
+        quizv2.text = "0"
+        quizv3.text = "0"
+        
+        switch num {
+        case 0:
+            quizv2.hidden = false
+            quizv3.hidden = false
+        case 1:
+            quizv3.hidden = false
+            quizv2.hidden = true
+        case 2:
+            quizv2.hidden = false
+            quizv3.hidden = true
+        default:
+            break
+        }
     }
     
 //    MARK: Protocol View Handler

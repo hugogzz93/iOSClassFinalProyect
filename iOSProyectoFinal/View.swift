@@ -75,7 +75,7 @@ class View: UIView, ControllerDelegate {
             case "--":
                 number -= 1
             case "+=2":
-               number += 2
+                number += 2
             case "+=3":
                 number += 3
             default: break
@@ -100,16 +100,16 @@ class View: UIView, ControllerDelegate {
     }
 
     func getData(name: String) -> Float {
-    	var number : Float
-    	switch name {
-	        case "v1":
-	            number = data.v1
-	        case "v2":
-	            number = data.v2
-	        case "v3":
-	            number = data.v3
-	        default: number = -1
+    	var number : Float = -1
+        
+        if name == forHeader.nombreV1 {
+            number = data.v1
+        } else if name == forHeader.nombreV2 {
+            number = data.v2
+        } else if name == forHeader.nombreV3 {
+            number = data.v3
         }
+        
         return number
     }
 
@@ -141,14 +141,11 @@ class View: UIView, ControllerDelegate {
     }
 
     func handleCoutIns() -> Int {
-        coutHandler("v1", position: 0)
-        coutHandler("v2", position: 1)
-        coutHandler("v3", position: 2)
-        return forStartInstruction()
+        preconditionFailure("This method must be overwritten.")
     }
 
     func coutHandler(name: String, position: Int) {
-        // var outPut = viewList[currentView].getData(name)
+        
         var outPut = getData(name);
         if outPut == -1 {
             outPut = 0.00
