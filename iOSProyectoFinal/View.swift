@@ -114,14 +114,12 @@ class View: UIView, ControllerDelegate {
     }
 
     func updateData(name: String, number: Float) {
-    	switch name {
-	        case "v1":
-	        	data.v1 = number
-	        case "v2":
-	        	data.v2 = number
-	        case "v3":
-	        	data.v3 = number
-	        default: break
+        if name == forHeader.nombreV1 {
+            data.v1 = number
+        } else if name == forHeader.nombreV2 {
+            data.v2 = number
+        } else if name == forHeader.nombreV3 {
+            data.v3 = number
         }
     }
 

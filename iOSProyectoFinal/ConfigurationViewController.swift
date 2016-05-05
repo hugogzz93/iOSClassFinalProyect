@@ -521,6 +521,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         self.view.endEditing(true)
     }
     
+
     func refreshTextFieldsName(nameV: String, num: NSNumber) {
         var temp : String!
 
