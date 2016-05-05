@@ -147,6 +147,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             cambioNombreV2.text = ""
             ForConfigHeader.actV2 = false
             pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV3]
+            switchV3.setOn(true, animated: true)
+            quitaV3(switchV3)
         }
         else {
             cambioNombreV2.enabled = true
@@ -166,6 +168,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             cambioNombreV3.text = ""
             ForConfigHeader.actV3 = false
             pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2]
+            switchV2.setOn(true, animated: true)
+            quitaV2(switchV2)
         }
         else {
             cambioNombreV3.enabled = true
