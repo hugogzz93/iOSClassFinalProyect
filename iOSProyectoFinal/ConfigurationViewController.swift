@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ View Controller that controls all the configuration
+ for the execution of the For in the ViewControllerOne
+ */
+
 struct ForHeader {
     
     var mainV3: Int = 3
