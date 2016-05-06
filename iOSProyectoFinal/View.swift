@@ -188,6 +188,10 @@ class View: UIView, ControllerDelegate {
 	            leftOperand += rightOperand
 	        case "-=":
 	            leftOperand -= rightOperand
+            case "*=":
+                leftOperand *= rightOperand
+            case "/=":
+                leftOperand /= rightOperand
 	        default: break
         }
         return leftOperand
