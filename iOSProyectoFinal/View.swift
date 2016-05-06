@@ -188,6 +188,10 @@ class View: UIView, ControllerDelegate {
 	            leftOperand += rightOperand
 	        case "-=":
 	            leftOperand -= rightOperand
+            case "*=":
+                leftOperand *= rightOperand
+            case "/=":
+                leftOperand /= rightOperand
 	        default: break
         }
         return leftOperand
@@ -364,18 +368,38 @@ class View: UIView, ControllerDelegate {
     }
 
     //MARK: Abstract Methods
+    
+    /**
+     Updates all the instructions with the data 
+     received from the configuration view.
+     */
+    
     func updateOutlets() {
     	preconditionFailure("This method must be overridden") 
     }
 
+    /**
+     Checks whether the execution hasn't finished and 
+     continues flow if so.
+     */
     func executeInstruction() {
     	preconditionFailure("This method must be overridden") 
     }
-
+    
+    /**
+     Calls a handler depending on which instruction is executed.
+     
+     - Parameter number: indicator of which instructino is being executed.
+     */
     func handleInstruction(number: Int) {
     	preconditionFailure("This method must be overridden") 
     }
     
+    /**
+     Checks the conditional fo the for and modifies variables appropriately.
+     
+     - Return: Number indicating which is the next isntruction to be executed.  
+     */
     func forStartInstruction() -> Int {
         preconditionFailure("This method must be overridden")
     }
