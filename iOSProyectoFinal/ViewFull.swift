@@ -102,10 +102,10 @@ class ViewFull: View {
         ifV3NumberField.text = forHeader.ifV3NumberField
         
         v3start.text = "int "+forHeader.nombreV3+" ="
-        v1ForDec.text = "for ( int "+forHeader.nombreV1+"="
-        v2ForDec.text = forHeader.nombreV2+"="
-        v1ForCompare.text = ";"+forHeader.nombreV1
-        v1ForCambio.text = ";"+forHeader.nombreV1
+        v1ForDec.text = "for ( int "+forHeader.nombreV1 + " ="
+        v2ForDec.text = ", " + forHeader.nombreV2 + " ="
+        v1ForCompare.text = "; "+forHeader.nombreV1
+        v1ForCambio.text = "; "+forHeader.nombreV1
         v2ForCambio.text = ", "+forHeader.nombreV2
         v1ForBody.text = forHeader.nombreV1
         v2ForBody.text = forHeader.nombreV2
