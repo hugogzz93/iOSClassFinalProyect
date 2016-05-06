@@ -94,6 +94,12 @@ class View: UIView, ControllerDelegate {
 	            leftOperand += rightOperand
 	        case "-=":
 	            leftOperand -= rightOperand
+            case "*=":
+                leftOperand *= rightOperand
+            case "/=":
+                if rightOperand != 0 {
+                leftOperand = leftOperand/rightOperand
+                }
 	        default: break
         }
         return leftOperand

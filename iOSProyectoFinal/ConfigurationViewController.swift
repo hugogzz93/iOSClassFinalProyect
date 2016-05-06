@@ -42,7 +42,6 @@ struct ForHeader {
     var ifV2IncDec: String = "--"
     var ifV3Mutation: String = "+="
     var ifV3NumberField: String = "v2"
-    //var ifV3NumberField: Int = 2
     
     //nombre de variables
     var nombreV1: String = "v1"
@@ -122,7 +121,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     //siwtches de control
     @IBOutlet weak var switchV2: UISwitch!
     @IBOutlet weak var switchV3: UISwitch!
-    @IBOutlet weak var switchIF: UISwitch!
 
     //  first responder
     var activeTextField = UITextField()
@@ -235,8 +233,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
         
-        //textField(mainV3, shouldChangeCharactersInRange: <#T##NSRange#>, replacementString: <#T##String#>)
-        
         pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
         cambioNombreV1.delegate = self
         cambioNombreV2.delegate = self
@@ -280,7 +276,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
         switchV2.setOn(ForConfigHeader.actV2, animated: true)
         switchV3.setOn(ForConfigHeader.actV3, animated: true)
-        switchIF.setOn(ForConfigHeader.actIF, animated: true)
         
         
 //        pickerView protocols
@@ -324,7 +319,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         coutField1.inputView = pickerViewVariables
         coutField2.inputView = pickerViewVariables
         coutField3.inputView = pickerViewVariables
-        
         
         
 //        textfieldDelegation
@@ -391,8 +385,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         return 1
         
     }
-    
-    
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -496,12 +488,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         ForConfigHeader.ifV2IncDec = ifV2IncDec.text!
         ForConfigHeader.ifV3Mutation = ifV3Mutation.text!
         ForConfigHeader.ifV3NumberField = ifV3NumberField.text!
-        //ForConfigHeader.ifV3NumberField = Int(ifV3NumberField.text!)!
         
         //variable active or inactive
         quitaV2(switchV2)
         quitaV3(switchV3)
-        ForConfigHeader.actIF = switchIF.on
+        //ForConfigHeader.actIF = switchIF.on
 
         viewInic.forHeader = ForConfigHeader
         if ForConfigHeader.actV2 {
