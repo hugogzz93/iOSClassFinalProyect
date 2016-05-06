@@ -116,6 +116,13 @@ class ViewControllerOne: UIViewController, ViewHandler {
         setQuizStatus(2)
     }
     
+    /**
+     Hides all views except the selected one, and prepares the selected
+     view for execution flow.
+     
+     - Parameter collection: Collection of arrows being assigned.
+     */
+    
     func selectView(selectedView : Int) {
         let activeView = viewList[selectedView]
         activeView.setForHeader(forHeader)
@@ -141,10 +148,22 @@ class ViewControllerOne: UIViewController, ViewHandler {
     
     // MARK: - Flow Control
     
+    /**
+     Called by the play button, signals that 
+     the next instruciton should be executed.
+     
+     - Parameter sender: The play button
+     */
     @IBAction func play(sender: AnyObject) {
             executeInstruction()
     }
     
+    /**
+     Signals the active view to execute the instruction and updates 
+     inspecrors and if execution is finished, updates de quiz view accordingly.
+     
+     - Parameter collection: Collection of arrows being assigned.
+     */
     func executeInstruction() {
         if !executionFinished() {
             viewList[currentView].executeInstruction()
@@ -155,10 +174,18 @@ class ViewControllerOne: UIViewController, ViewHandler {
         
     }
 
+    /**
+     Setter for the current instruction indicator
+     
+     - Parameter num: the new number of the current instruction
+     */
     func setCurrentIns(num : Int) {
         currentInstruction = num
     }
     
+    /**
+     Updates the labels in the inspector view with the values of their variables.
+     */
     func updateInspector() {
         let data = viewList[currentView].getData()
         InsV1Val.text = String(data.v1)
@@ -166,11 +193,23 @@ class ViewControllerOne: UIViewController, ViewHandler {
         InsV3Val.text = String(data.v3)
     }
     
+    /**
+     Checks if the execution has finished or not.
+     
+     - Return: boolean indicating whether the execution has finished or not
+     */
     func executionFinished() -> Bool {
         return viewList[currentView].getExecutionFinished()
     }
     
 //    MARK: Quiz View
+    
+    /**
+     Changes the label and background color of the quiz view.
+     
+     - Parameter type: Different types of status indicating if the quiz is
+     answered correctly, incorrectly or neutral.
+     */
     func setQuizStatus(type: Int) {
         switch type {
         case 0:
@@ -183,16 +222,33 @@ class ViewControllerOne: UIViewController, ViewHandler {
         }
     }
     
+    /**
+     Changes the label and background color of the quiz view.
+     
+     - Parameter string: The new value to be displayed in the label.
+     - Parameter hexCode: The new background color to be displayed.
+     */
     func updateQuizView(string: String, hexCode: Int) {
         quizLb.text = string
         quizBck.backgroundColor = UIColor(netHex: hexCode)
     }
     
+    /**
+     Checks whether the quiz is correct or not
+     
+     - Return: Boolean indicating whether its correct or not.
+     */
     func isQuizCorrect() -> Bool {
         let data = viewList[currentView].getData()
         return data.v1 == Float(quizv1.text!)! && data.v2 == Float(quizv2.text!)! && data.v3 == Float(quizv3.text!)!
     }
     
+    /**
+     Resets the quiz status.
+     
+     - Parameter num: Different types of settings, depending whether
+     there will be a variable eliminated.
+     */
     func prepareQuiz(num : Int) {
         quizv1.text = "0"
         quizv2.text = "0"
@@ -244,6 +300,10 @@ struct Data {
     var v3 : Float = 0
 }
 
+/**
+ Hides keyboard when user has clicked outside of the keyboard.
+ 
+ */
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -255,6 +315,9 @@ extension UIViewController {
     }
 }
 
+/**
+ Extension used to choose a color with hex values.
+ */
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")

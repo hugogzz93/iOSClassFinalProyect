@@ -152,6 +152,11 @@ class ViewOneVar: View {
     
     //MARK: Handlers
     
+    /**
+     Checks whether the for conditional is true or not and handles the outcome.
+     
+     - Return: Number indicating which is the next instruction to be executed.
+     */
     func handleForConditional() -> Int {
         
         forConditional = binaryOperation(forHeader.forInitV1Condition, leftOperand: data.v1, rightOperand: Float(forHeader.forInitV1NumberField))
@@ -165,6 +170,11 @@ class ViewOneVar: View {
         return currentInstruction() + 1
     }
     
+    /**
+     Checks whether the if conditional is true or not and handles the outcome.
+     
+     - Return: Number indicating which is the next instruction to be executed.
+     */
     func handleConditional() -> Int {
         var number : Float = 0
         var nextIns = 0
@@ -179,6 +189,12 @@ class ViewOneVar: View {
         return nextIns
     }
     
+    /**
+     Handles the instructions inside the if.
+     
+     - Parameter Ins: Number indicating which instruction inside the if is being executed.
+     - Return: Number indicating which is the next instruction to be executed.
+     */
     func handleIfIns(Ins: Int) -> Int {
         var varNames = Array<String>(), sign = ""
         var instruction: (String, Array<String>) -> Float = mutation
@@ -198,6 +214,12 @@ class ViewOneVar: View {
         return currentInstruction() + 1
     }
     
+    /**
+     Handles the instructions inside the loop.
+     
+     - Parameter Ins: Number indicating which instruction inside the if is being executed.
+     - Return: Number indicating which is the next instruction to be executed.
+     */
     func handleLoopIns(Ins: Int) -> Int {
         var varNames = Array<String>(), sign = ""
         var instruction: (String, Array<String>) -> Float = mutation
