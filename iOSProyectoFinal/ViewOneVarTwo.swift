@@ -83,10 +83,10 @@ class ViewOneVarTwo: View {
         ifV1IncDec.text = forHeader.ifV1IncDec
         ifV2IncDec.text = forHeader.ifV2IncDec
         
-        v1ForDec.text = "for ( int "+forHeader.nombreV1+"="
-        v2ForDec.text = forHeader.nombreV2+"="
-        v1ForCompare.text = ";"+forHeader.nombreV1
-        v1ForCambio.text = ";"+forHeader.nombreV1
+        v1ForDec.text = "for ( int "+forHeader.nombreV1+" ="
+        v2ForDec.text = ", " + forHeader.nombreV2 + " ="
+        v1ForCompare.text = "; "+forHeader.nombreV1
+        v1ForCambio.text = "; "+forHeader.nombreV1
         v2ForCambio.text = ", "+forHeader.nombreV2
         v1ForBody.text = forHeader.nombreV1
         v2ForBody.text = forHeader.nombreV2

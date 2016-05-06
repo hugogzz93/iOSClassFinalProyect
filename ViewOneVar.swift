@@ -87,9 +87,9 @@ class ViewOneVar: View {
         ifV3NumberField.text = forHeader.ifV3NumberField
         
         v3start.text = "int "+forHeader.nombreV3+" ="
-        v1ForDec.text = "for ( int "+forHeader.nombreV1+"="
-        v1ForCompare.text = ";"+forHeader.nombreV1
-        v1ForCambio.text = ";"+forHeader.nombreV1
+        v1ForDec.text = "for ( int "+forHeader.nombreV1+" ="
+        v1ForCompare.text = "; "+forHeader.nombreV1
+        v1ForCambio.text = "; "+forHeader.nombreV1
         v1ForBody.text = forHeader.nombreV1
         v3ForBody.text = forHeader.nombreV3
         ifV1Compare.text = "if ("+forHeader.nombreV1
