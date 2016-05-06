@@ -154,6 +154,8 @@ class ViewFull: View {
             nextInstruction = handleLoopIns(3)
         case 9:
             nextInstruction = handleCoutIns()
+            data.v1 = mutation(forHeader.forInitV1IncDec, numberName: [forHeader.nombreV1])
+            data.v2 = mutation(forHeader.forInitV2IncDec, numberName: [forHeader.nombreV2])
             
         default: break
             
@@ -185,10 +187,7 @@ class ViewFull: View {
         
         forConditional = binaryOperation(forHeader.forInitV1Condition, leftOperand: data.v1, rightOperand: Float(forHeader.forInitV1NumberField))
         
-        if forConditional {
-        	data.v1 = mutation(forHeader.forInitV1IncDec, numberName: [forHeader.nombreV1])
-        	data.v2 = mutation(forHeader.forInitV2IncDec, numberName: [forHeader.nombreV2])
-        } else {
+        if !forConditional {
             finalizeExecution()
         }
         

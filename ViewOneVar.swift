@@ -131,6 +131,7 @@ class ViewOneVar: View {
             nextInstruction = handleLoopIns(3)
         case 7:
             nextInstruction = handleCoutIns()
+            data.v1 = mutation(forHeader.forInitV1IncDec, numberName: [forHeader.nombreV1])
             
         default: break
 
@@ -161,9 +162,7 @@ class ViewOneVar: View {
         
         forConditional = binaryOperation(forHeader.forInitV1Condition, leftOperand: data.v1, rightOperand: Float(forHeader.forInitV1NumberField))
         
-        if forConditional {
-            data.v1 = mutation(forHeader.forInitV1IncDec, numberName: [forHeader.nombreV1])
-        } else {
+        if !forConditional {
             finalizeExecution()
         }
         
