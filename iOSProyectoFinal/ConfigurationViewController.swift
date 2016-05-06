@@ -436,6 +436,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
     }
     
+    /**
+     Loads the values of each ViewPicker's options by reading the ViewPicker's tag
+     - Parameter pickerView: the PickerView which options will be loaded
+     - Parameter row: the number of option that will be written
+     - Returns: the string that was stored in the option of the ViewPicker
+     */
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -459,11 +465,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     /**
-     Obtains the value of the PickerView that was tapped
+     Obtains the value of the PickerView that was tapped and assigns the value to
+     it's coresponding text field
      - Parameter pickerView : the specific PickerView that called the function
      - Parameter didSelectRow : the row that was selected
-     - Parameter
-     - Returns: the number of rows
+     - Parameter the component that was utilized in the call
      */
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
