@@ -216,24 +216,19 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func refreshTextFieldsNoV2() {
         if coutField1.text == ForConfigHeader.nombreV2  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField1.text = self.ForConfigHeader.nombreV1})
+            self.coutField1.text = self.ForConfigHeader.nombreV1
         }
         if coutField2.text == ForConfigHeader.nombreV2  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField2.text = self.ForConfigHeader.nombreV1})
+           self.coutField2.text = self.ForConfigHeader.nombreV1
         }
         if coutField3.text == ForConfigHeader.nombreV2  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField3.text = self.ForConfigHeader.nombreV1})
+            self.coutField3.text = self.ForConfigHeader.nombreV1
         }
         if ifConditionP2.text == ForConfigHeader.nombreV2  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.ifConditionP2.text = self.ForConfigHeader.nombreV1})
+            self.ifConditionP2.text = self.ForConfigHeader.nombreV1
         }
         if ifV3NumberField.text == ForConfigHeader.nombreV2  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.ifV3NumberField.text = self.ForConfigHeader.nombreV1})
+            self.ifV3NumberField.text = self.ForConfigHeader.nombreV1
         }
     }
     
@@ -244,27 +239,22 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func refreshTextFieldsNoV3() {
         if coutField1.text == ForConfigHeader.nombreV3  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField1.text = self.ForConfigHeader.nombreV1})
+            self.coutField1.text = self.ForConfigHeader.nombreV1
         }
         if coutField2.text == ForConfigHeader.nombreV3  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField2.text = self.ForConfigHeader.nombreV1})
+            self.coutField2.text = self.ForConfigHeader.nombreV1
         }
         if coutField3.text == ForConfigHeader.nombreV3  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.coutField3.text = self.ForConfigHeader.nombreV1})
+            self.coutField3.text = self.ForConfigHeader.nombreV1
         }
         if ifConditionP2.text == ForConfigHeader.nombreV3  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.ifConditionP2.text = self.ForConfigHeader.nombreV1})
+            self.ifConditionP2.text = self.ForConfigHeader.nombreV1
         }
         if ifV3NumberField.text == ForConfigHeader.nombreV3  {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.ifV3NumberField.text = self.ForConfigHeader.nombreV1})
+            self.ifV3NumberField.text = self.ForConfigHeader.nombreV1
         }
     }
-
+    
     /**
      Reads the struct sent by ViewControllOne and assigns it to the corresponding
      variables and outlets
@@ -501,9 +491,29 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         
-            if (!searchNum(mainV3.text!) || !searchNum(forInitV1P.text!) || !searchNum(forInitV2P.text!) || !searchNum(forInitV1NumberField.text!) || !searchNum(forV3NumberField.text!)) {
+        if !switchV3.on {
+            refreshTextFieldsNoV3()
+        }
+        
+        if !switchV2.on {
+            refreshTextFieldsNoV2()
+        }
+        
+        if (!searchNum(mainV3.text!) || !searchNum(forInitV1P.text!) || !searchNum(forInitV2P.text!) || !searchNum(forInitV1NumberField.text!) || !searchNum(forV3NumberField.text!)) {
+        
+            let alertController = UIAlertController(title: "Error de Configuración", message: "No se colocaron números en las casillas correspondientes", preferredStyle: .Alert)
                 
-                let alertController = UIAlertController(title: "Error de Configuración", message: "No se colocaron números en las casillas correspondientes", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true, completion:nil)
+                
+            return false
+        }
+        
+        else if (coutField1.text == "" || coutField2.text == "" || coutField3.text == "" || ifConditionP2.text == "" || ifV3NumberField.text == "") {
+                let alertController = UIAlertController(title: "Error de Configuración", message: "Hay áreas necesarias vacías", preferredStyle: .Alert)
                 
                 let OKAction = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
                 }
@@ -512,15 +522,15 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
                 self.presentViewController(alertController, animated: true, completion:nil)
                 
                 return false
-            }
-                
-            else {
-                refreshTextFieldsName(pastNameV1, num: 1)
-                refreshTextFieldsName(pastNameV2, num: 2)
-                refreshTextFieldsName(pastNameV3, num: 3)
-                
-                return true
-            }
+        }
+        
+        else {
+            refreshTextFieldsName(pastNameV1, num: 1)
+            refreshTextFieldsName(pastNameV2, num: 2)
+            refreshTextFieldsName(pastNameV3, num: 3)
+            
+            return true
+        }
     }
         
         // by default, transition
