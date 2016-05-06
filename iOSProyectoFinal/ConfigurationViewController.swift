@@ -16,7 +16,12 @@ import UIKit
 struct ForHeader {
     
     var mainV3: Int = 3
-    
+    /**
+     struct that has the function to send and recieve all the pertinent
+     information to configure the For
+     - contains comparers and increment/decrement statements
+     - contains the name of the variables and which ones are used
+     */
     
     //for init
     var forInitV1P: Int = 1
@@ -130,6 +135,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     //  first responder
     var activeTextField = UITextField()
     
+    /**
+     Performs the name change of a variable in the view's struct
+     - Parameter varUsed : the variable which name will be changed
+     - Returns : the name of the varibale which name was changed
+     */
+    
     func varNameChange(varUsed: String) -> String{
         switch varUsed {
         case tempNameV1:
@@ -142,6 +153,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             return varUsed
         }
     }
+    
+    /**
+     Performs changes on the view and the view's struct so that the variable 2 
+     isn't active
+     - Parameter sender : the vaule of switchV2, the variable 2 control switch
+     */
     
     func quitaV2(sender: UISwitch) {
         if !sender.on {
@@ -164,6 +181,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
     
+    /**
+     Performs changes on the view and the view's struct so that the variable 3
+     isn't active
+     - Parameter sender : the vaule of switchV2, the variable 3 control switch
+     */
+    
     func quitaV3(sender: UISwitch) {
         if !sender.on {
             refreshTextFieldsNoV3()
@@ -185,6 +208,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         }
         
     }
+    
+    /**
+     Changes the visible names of all the text fields that contain the variable 2
+     to its actual name
+     */
     
     func refreshTextFieldsNoV2() {
         if coutField1.text == ForConfigHeader.nombreV2  {
@@ -209,6 +237,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
     
+    /**
+     Changes the visible names of all the text fields that contain the variable 3
+     to its actual name
+     */
+    
     func refreshTextFieldsNoV3() {
         if coutField1.text == ForConfigHeader.nombreV3  {
             dispatch_async(dispatch_get_main_queue(), {
@@ -232,6 +265,10 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
 
+    /**
+     Reads the struct sent by ViewControllOne and assigns it to the corresponding
+     variables and outlets
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -367,13 +404,21 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     // MARK: - PickerView
     
-    // returns the number of 'columns' to display.
+    /**
+     Configures the pickerview's number of columns to display
+     - Returns: the number of 'columns' to display.
+     */
+
     @available(iOS 2.0, *)
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    // returns the # of rows in each component..
+    /**
+     Measures and returns the number of rows in each component
+     - Returns: the number of rows
+     */
+    
     @available(iOS 2.0, *)
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
@@ -390,6 +435,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         return 1
         
     }
+    
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -412,6 +458,14 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         return ""
     }
     
+    /**
+     Obtains the value of the PickerView that was tapped
+     - Parameter pickerView : the specific PickerView that called the function
+     - Parameter didSelectRow : the row that was selected
+     - Parameter
+     - Returns: the number of rows
+     */
+    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         var text = ""
@@ -430,6 +484,14 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
         activeTextField.text = text
     }
+    
+    /**
+     Checks if all the text fields that can be written contain only numbers before the segue
+     can be efecutated
+     Parameter identifier: used to reconginze the segue
+     Parameter sender: used to recognize the object provoking the segue
+     Returns : the boolean if the segue is allowed
+     */
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         
@@ -453,10 +515,13 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
                 
                 return true
             }
-        }
+    }
         
         // by default, transition
-  
+    /**
+     Performs a segue to send the struct with all the For's configuration to the 
+     ViewControllerOne
+     */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let viewInic: ViewControllerOne = segue.destinationViewController as! ViewControllerOne
@@ -516,11 +581,21 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         }
     }
     
+    /**
+     Adds the ability to remove the keyboard with a tap gesture
+     */
+    
     @IBAction func quitaTeclado()
     {
         self.view.endEditing(true)
     }
     
+    /**
+     Looks for  text fields that utilize a variable name and updates them with the
+     current name
+     - Parameter nameV: the old name of the variable that will be updated
+     - Parameter num: the number of the variable that will be update 1,2 or 3
+     */
 
     func refreshTextFieldsName(nameV: String, num: NSNumber) {
         var temp : String!
@@ -558,6 +633,14 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     }
     
+    /**
+     Reviews the sent text to confirm if it contains only numbers
+     current name
+     - Parameter input: the string to be checked, which will be the value of
+     text fields that permit keyboard use
+     - Returns: returns a TURE if the string contains only numbers
+     */
+    
     func searchNum(input : String) -> Bool{
         let numArray:[Character] = ["1", "2", "3","4", "5", "6","7", "8", "9","0"]
         var hayP : Bool = false
@@ -581,6 +664,11 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         return true
     }
     
+    /**
+     Contorls the amount of characters on the text fields, they can only contain
+     4 characters
+     */
+
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,replacementString string: String) -> Bool
     {
         let maxLength = 4
