@@ -596,7 +596,7 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             viewInic.currentView = 0
         }
         
-        viewInic.currentView = 3
+        viewInic.currentView = 4
     }
     
     /**

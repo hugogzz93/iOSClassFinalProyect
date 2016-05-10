@@ -114,10 +114,8 @@ class ViewOneVar: View {
             if !forInitialized {
                 data.v1 = Float(forHeader.forInitV1P)
                 forInitialized = true
-                nextInstruction = currentInstruction() + 1
-            } else {
-                nextInstruction = handleForConditional()
             }
+            nextInstruction = handleForConditional()
             
         case 2:
             nextInstruction = handleConditional()

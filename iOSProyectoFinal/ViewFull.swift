@@ -133,10 +133,8 @@ class ViewFull: View {
                 data.v1 = Float(forHeader.forInitV1P)
                 data.v2 = Float(forHeader.forInitV2P)
                 forInitialized = true
-                nextInstruction = currentInstruction() + 1
-            } else {
-                nextInstruction = handleForConditional()
             }
+            nextInstruction = handleForConditional()
             
         case 2:
             nextInstruction = handleConditional()
