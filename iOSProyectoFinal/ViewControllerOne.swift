@@ -91,7 +91,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
         viewV2V3Mis.setArrowCollection(viewV2V3MisArrows)
         viewIfMis.setArrowCollection(viewIfMisArrows)
         viewV2MisIfMis.setArrowCollection(viewV2MisIfMisArrows)
-        viewV3MisIfMis.setArrowCollection(viewV2MisIfMisArrows)
+        viewV3MisIfMis.setArrowCollection(viewV3MisIfMisArrows)
         viewList.append(viewFull)
         viewList.append(viewOneVar)
         viewList.append(viewOneVarTwo)
@@ -129,7 +129,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
         
         selectView(currentView)
         prepareQuiz(currentView)
-        updateInspector()
+        prepareInspector(currentView)
         setQuizStatus(2)
     }
     
@@ -198,6 +198,41 @@ class ViewControllerOne: UIViewController, ViewHandler {
      */
     func setCurrentIns(num : Int) {
         currentInstruction = num
+    }
+    
+    /**
+     Updates inspector and hides labels that are not used.
+     
+     - Parameter num: the number of the selected view
+     */
+    func prepareInspector(num : Int) {
+        updateInspector()
+        switch num {
+        case 0:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = false
+        case 1:
+            InsV3Val.hidden = false
+            InsV2Val.hidden = true
+        case 2:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = true
+        case 3:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = false
+        case 4:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = false
+        case 5:
+            InsV2Val.hidden = true
+            InsV3Val.hidden = false
+        case 6:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = true
+        default:
+            break
+        }
+        
     }
     
     /**
@@ -279,6 +314,18 @@ class ViewControllerOne: UIViewController, ViewHandler {
             quizv3.hidden = false
             quizv2.hidden = true
         case 2:
+            quizv2.hidden = false
+            quizv3.hidden = true
+        case 3:
+            quizv2.hidden = false
+            quizv3.hidden = false
+        case 4:
+            quizv2.hidden = false
+            quizv3.hidden = false
+        case 5:
+            quizv2.hidden = true
+            quizv3.hidden = false
+        case 6:
             quizv2.hidden = false
             quizv3.hidden = true
         default:
