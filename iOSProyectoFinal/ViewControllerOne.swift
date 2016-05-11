@@ -218,8 +218,8 @@ class ViewControllerOne: UIViewController, ViewHandler {
             InsV2Val.hidden = false
             InsV3Val.hidden = true
         case 3:
-            InsV2Val.hidden = false
-            InsV3Val.hidden = false
+            InsV2Val.hidden = true
+            InsV3Val.hidden = true
         case 4:
             InsV2Val.hidden = false
             InsV3Val.hidden = false
@@ -317,8 +317,8 @@ class ViewControllerOne: UIViewController, ViewHandler {
             quizv2.hidden = false
             quizv3.hidden = true
         case 3:
-            quizv2.hidden = false
-            quizv3.hidden = false
+            quizv2.hidden = true
+            quizv3.hidden = true
         case 4:
             quizv2.hidden = false
             quizv3.hidden = false

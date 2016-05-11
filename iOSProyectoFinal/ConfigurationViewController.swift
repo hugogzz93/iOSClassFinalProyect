@@ -92,7 +92,6 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     
     @IBOutlet weak var mainV3: UITextField!
     
-    
     //for init
     @IBOutlet weak var forInitV1P: UITextField!
     @IBOutlet weak var forInitV2P: UITextField!
@@ -131,7 +130,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
     //siwtches de control
     @IBOutlet weak var switchV2: UISwitch!
     @IBOutlet weak var switchV3: UISwitch!
-
+    @IBOutlet weak var switchIF: UISwitch!
+    
     //  first responder
     var activeTextField = UITextField()
     
@@ -166,9 +166,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             cambioNombreV2.enabled = false
             cambioNombreV2.text = ""
             ForConfigHeader.actV2 = false
-            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV3]
-            switchV3.setOn(true, animated: true)
-            quitaV3(switchV3)
+            if switchV3.on {
+                pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV3]
+            }
+            else {
+                pickerVariables = [ForConfigHeader.nombreV1]
+            }
         }
         else {
             cambioNombreV2.enabled = true
@@ -177,7 +180,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
                 cambioNombreV2.text = "v2"
                 ForConfigHeader.nombreV2 = "v2"
             }
-            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+            if switchV3.on {
+                pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+            }
+            else {
+                pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2]
+            }
         }
     }
     
@@ -193,9 +201,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             cambioNombreV3.enabled = false
             cambioNombreV3.text = ""
             ForConfigHeader.actV3 = false
-            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2]
-            switchV2.setOn(true, animated: true)
-            quitaV2(switchV2)
+            if switchV2.on {
+                pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2]
+            }
+            else {
+                pickerVariables = [ForConfigHeader.nombreV1]
+            }
         }
         else {
             cambioNombreV3.enabled = true
@@ -204,7 +215,12 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
                 cambioNombreV3.text = "v3"
                 ForConfigHeader.nombreV3 = "v3"
             }
-            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+            if switchV2.on {
+                pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+            }
+            else {
+                pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV3]
+            }
         }
         
     }
@@ -308,6 +324,21 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         
         switchV2.setOn(ForConfigHeader.actV2, animated: true)
         switchV3.setOn(ForConfigHeader.actV3, animated: true)
+        switchIF.setOn(ForConfigHeader.actIF, animated: true)
+        
+        //actualizar los valores del pickerView de variables
+        if switchV3.on && switchV2.on {
+            pickerVariables = [ForConfigHeader.nombreV1,ForConfigHeader.nombreV2, ForConfigHeader.nombreV3]
+        }
+        else if switchV2.on {
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV2]
+        }
+        else if switchV3.on {
+            pickerVariables = [ForConfigHeader.nombreV1, ForConfigHeader.nombreV3]
+        }
+        else {
+            pickerVariables = [ForConfigHeader.nombreV1]
+        }
         
         
 //        pickerView protocols
@@ -499,6 +530,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
             refreshTextFieldsNoV2()
         }
         
+        ForConfigHeader.actIF = switchIF.on
+        
         if (!searchNum(mainV3.text!) || !searchNum(forInitV1P.text!) || !searchNum(forInitV2P.text!) || !searchNum(forInitV1NumberField.text!) || !searchNum(forV3NumberField.text!)) {
         
             let alertController = UIAlertController(title: "Error de Configuración", message: "No se colocaron números en las casillas correspondientes", preferredStyle: .Alert)
@@ -579,9 +612,10 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         quitaV2(switchV2)
         quitaV3(switchV3)
         //ForConfigHeader.actIF = switchIF.on
-
+        
+        //elegir views con el If activo
         viewInic.forHeader = ForConfigHeader
-        if ForConfigHeader.actV2 {
+        if ForConfigHeader.actV2 && switchIF.on {
             if ForConfigHeader.actV3 {
                 viewInic.currentView = 0
             }
@@ -589,14 +623,28 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
                 viewInic.currentView = 2
             }
         }
-        else if ForConfigHeader.actV3 {
+        else if ForConfigHeader.actV3 && switchIF.on {
             viewInic.currentView = 1
         }
-        else {
-            viewInic.currentView = 0
+        else if switchIF.on {
+            viewInic.currentView = 3
         }
         
-        viewInic.currentView = 6
+        //elegir views con el Of inactivo
+        if ForConfigHeader.actV2 && !switchIF.on {
+            if ForConfigHeader.actV3 {
+                viewInic.currentView = 4
+            }
+            else {
+                viewInic.currentView = 6
+            }
+        }
+        else if ForConfigHeader.actV3 && !switchIF.on {
+            viewInic.currentView = 5
+        }
+        else if !switchIF.on{
+            viewInic.currentView = 3
+        }
     }
     
     /**
@@ -660,25 +708,10 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
      */
     
     func searchNum(input : String) -> Bool{
-        let numArray:[Character] = ["1", "2", "3","4", "5", "6","7", "8", "9","0"]
-        var hayP : Bool = false
-        
-        if input.isEmpty {
+        let temp = Int(input)
+        if temp == nil {
             return false
         }
-        
-        for char in input.characters {
-            for num in numArray {
-                if char == num {
-                    hayP = true
-                }
-            }
-            if !hayP {
-                return hayP
-            }
-            hayP=false
-        }
-        
         return true
     }
     
