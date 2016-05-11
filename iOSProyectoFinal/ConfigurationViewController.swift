@@ -595,6 +595,8 @@ class ConfigurationViewController: UIViewController, UIPickerViewDataSource, UIP
         else {
             viewInic.currentView = 0
         }
+        
+        viewInic.currentView = 6
     }
     
     /**

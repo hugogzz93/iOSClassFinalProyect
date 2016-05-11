@@ -19,12 +19,21 @@ class ViewControllerOne: UIViewController, ViewHandler {
     @IBOutlet var viewOneVarTwo: ViewOneVarTwo!
     @IBOutlet var viewFull: ViewFull!
     @IBOutlet var viewOneVar: ViewOneVar!
+    @IBOutlet var viewV2V3Mis: ViewV2V3Mis!
+    @IBOutlet var viewV2MisIfMis: ViewV2MisIfMis!
+    @IBOutlet var viewV3MisIfMis: ViewV3MisIfMis!
     var viewList: Array<View> = []
     
+    
+    @IBOutlet var viewIfMis: ViewIfMis!
 //    viewfull arrows
     @IBOutlet var viewFullArrows: [UIImageView]!
     @IBOutlet var viewOneTwoArrows: [UIImageView]!
     @IBOutlet var viewOneArrows: [UIImageView]!
+    @IBOutlet var viewV2V3MisArrows: [UIImageView]!
+    @IBOutlet var viewIfMisArrows: [UIImageView]!
+    @IBOutlet var viewV2MisIfMisArrows: [UIImageView]!
+    @IBOutlet var viewV3MisIfMisArrows: [UIImageView]!
     
     var btnImage = UIImage(named: "play")
 
@@ -79,9 +88,17 @@ class ViewControllerOne: UIViewController, ViewHandler {
         viewFull.setArrowCollection(viewFullArrows)
         viewOneVarTwo.setArrowCollection(viewOneTwoArrows)
         viewOneVar.setArrowCollection(viewOneArrows)
+        viewV2V3Mis.setArrowCollection(viewV2V3MisArrows)
+        viewIfMis.setArrowCollection(viewIfMisArrows)
+        viewV2MisIfMis.setArrowCollection(viewV2MisIfMisArrows)
+        viewV3MisIfMis.setArrowCollection(viewV3MisIfMisArrows)
         viewList.append(viewFull)
         viewList.append(viewOneVar)
         viewList.append(viewOneVarTwo)
+        viewList.append(viewV2V3Mis)
+        viewList.append(viewIfMis)
+        viewList.append(viewV2MisIfMis)
+        viewList.append(viewV3MisIfMis)
         
         for view in viewList {
             view.delegate = self
@@ -112,7 +129,7 @@ class ViewControllerOne: UIViewController, ViewHandler {
         
         selectView(currentView)
         prepareQuiz(currentView)
-        updateInspector()
+        prepareInspector(currentView)
         setQuizStatus(2)
     }
     
@@ -181,6 +198,41 @@ class ViewControllerOne: UIViewController, ViewHandler {
      */
     func setCurrentIns(num : Int) {
         currentInstruction = num
+    }
+    
+    /**
+     Updates inspector and hides labels that are not used.
+     
+     - Parameter num: the number of the selected view
+     */
+    func prepareInspector(num : Int) {
+        updateInspector()
+        switch num {
+        case 0:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = false
+        case 1:
+            InsV3Val.hidden = false
+            InsV2Val.hidden = true
+        case 2:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = true
+        case 3:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = false
+        case 4:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = false
+        case 5:
+            InsV2Val.hidden = true
+            InsV3Val.hidden = false
+        case 6:
+            InsV2Val.hidden = false
+            InsV3Val.hidden = true
+        default:
+            break
+        }
+        
     }
     
     /**
@@ -262,6 +314,18 @@ class ViewControllerOne: UIViewController, ViewHandler {
             quizv3.hidden = false
             quizv2.hidden = true
         case 2:
+            quizv2.hidden = false
+            quizv3.hidden = true
+        case 3:
+            quizv2.hidden = false
+            quizv3.hidden = false
+        case 4:
+            quizv2.hidden = false
+            quizv3.hidden = false
+        case 5:
+            quizv2.hidden = true
+            quizv3.hidden = false
+        case 6:
             quizv2.hidden = false
             quizv3.hidden = true
         default:

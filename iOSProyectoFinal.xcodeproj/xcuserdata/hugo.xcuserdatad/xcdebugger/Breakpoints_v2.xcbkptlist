@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "484202824.054449"
+            timestampString = "484624752.981233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "UIColor"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "484202824.054449"
+            timestampString = "484624752.981233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "463"
+            endingLineNumber = "463"
             landmarkName = "UIColor"
             landmarkType = "3">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "484202824.054449"
+            timestampString = "484624752.981233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "UIColor"
             landmarkType = "3">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "484202824.054449"
+            timestampString = "484624752.981233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
             landmarkName = "UIColor"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "484202824.054449"
+            timestampString = "484624752.981233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
             landmarkName = "UIColor"
             landmarkType = "3">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewControllerOne.swift"
-            timestampString = "483979827.306622"
+            timestampString = "484624164.348611"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "unwindEditar(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSProyectoFinal/ViewFull.swift"
-            timestampString = "484203369.629026"
+            timestampString = "484597405.93449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "handleLoopIns(_:)"
             landmarkType = "5">
          </BreakpointContent>

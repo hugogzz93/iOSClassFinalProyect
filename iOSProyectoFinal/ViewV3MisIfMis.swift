@@ -1,18 +1,16 @@
 //
-//  ViewOneVarTwo.swift
+//  ViewV3MisIfMis.swift
 //  iOSProyectoFinal
 //
-//  Created by Hugo Gonzalez on 5/1/16.
+//  Created by Hugo Gonzalez on 5/10/16.
 //  Copyright © 2016 Hugo Gonzalez. All rights reserved.
 //
 
 import UIKit
 
-class ViewOneVarTwo: View {
+class ViewV3MisIfMis: View {
     
     let FOR_START = 0
-    let AFTER_IF = 4
-    let IF_START = 2
     
     
     //for init
@@ -32,14 +30,6 @@ class ViewOneVarTwo: View {
     @IBOutlet weak var coutField1: UITextField!
     @IBOutlet weak var coutField2: UITextField!
     
-    //if conditional
-    @IBOutlet weak var ifConditionP1: UITextField!
-    @IBOutlet weak var ifConditionP2: UITextField!
-    
-    //if body
-    @IBOutlet weak var ifV1IncDec: UITextField!
-    @IBOutlet weak var ifV2IncDec: UITextField!
-    
     //labels
     @IBOutlet weak var v1ForDec: UILabel!
     @IBOutlet weak var v2ForDec: UILabel!
@@ -50,10 +40,6 @@ class ViewOneVarTwo: View {
     @IBOutlet weak var v1ForBody: UILabel!
     @IBOutlet weak var v2ForBody: UILabel!
     
-    @IBOutlet weak var ifV1Compare: UILabel!
-    @IBOutlet weak var v1IF: UILabel!
-    @IBOutlet weak var v2IF: UILabel!
-
     
     
     // MARK: Protocol
@@ -75,14 +61,6 @@ class ViewOneVarTwo: View {
         coutField1.text = forHeader.coutField1
         coutField2.text = forHeader.coutField2
         
-        //if conditional
-        ifConditionP1.text = forHeader.ifConditionP1
-        ifConditionP2.text = forHeader.ifConditionP2
-        
-        //if body
-        ifV1IncDec.text = forHeader.ifV1IncDec
-        ifV2IncDec.text = forHeader.ifV2IncDec
-        
         v1ForDec.text = "for ( int "+forHeader.nombreV1+" ="
         v2ForDec.text = ", " + forHeader.nombreV2 + " ="
         v1ForCompare.text = "; "+forHeader.nombreV1
@@ -90,9 +68,6 @@ class ViewOneVarTwo: View {
         v2ForCambio.text = ", "+forHeader.nombreV2
         v1ForBody.text = forHeader.nombreV1
         v2ForBody.text = forHeader.nombreV2
-        ifV1Compare.text = "if ("+forHeader.nombreV1
-        v1IF.text = forHeader.nombreV1
-        v2IF.text = forHeader.nombreV2
     }
     
     override func executeInstruction() {
@@ -111,18 +86,11 @@ class ViewOneVarTwo: View {
                 forInitialized = true
             }
             nextInstruction = handleForConditional()
-            
         case 1:
-            nextInstruction = handleConditional()
-        case 2:
-            nextInstruction = handleIfIns(1)
-        case 3:
-            nextInstruction = handleIfIns(2)
-        case 4:
             nextInstruction = handleLoopIns(1)
-        case 5:
+        case 2:
             nextInstruction = handleLoopIns(2)
-        case 6:
+        case 3:
             nextInstruction = handleCoutIns()
             data.v1 = mutation(forHeader.forInitV1IncDec, numberName: [forHeader.nombreV1])
             data.v2 = mutation(forHeader.forInitV2IncDec, numberName: [forHeader.nombreV2])
@@ -160,25 +128,6 @@ class ViewOneVarTwo: View {
         }
         
         return currentInstruction() + 1
-    }
-    
-    /**
-     Checks whether the if conditional is true or not and handles the outcome.
-     
-     - Return: Number indicating which is the next instruction to be executed.
-     */
-    func handleConditional() -> Int {
-        var number : Float = 0
-        var nextIns = 0
-        number = getData(forHeader.ifConditionP2)
-        ifConditional = binaryOperation(forHeader.ifConditionP1, leftOperand: data.v1, rightOperand: number)
-        
-        if !ifConditional {
-            nextIns = AFTER_IF
-        } else {
-            nextIns = IF_START
-        }
-        return nextIns
     }
     
     /**
@@ -232,4 +181,6 @@ class ViewOneVarTwo: View {
     }
     
 }
+
+
 
