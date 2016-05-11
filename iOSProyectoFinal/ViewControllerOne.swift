@@ -20,7 +20,10 @@ class ViewControllerOne: UIViewController, ViewHandler {
     @IBOutlet var viewFull: ViewFull!
     @IBOutlet var viewOneVar: ViewOneVar!
     @IBOutlet var viewV2V3Mis: ViewV2V3Mis!
+    @IBOutlet var viewV2MisIfMis: ViewV2MisIfMis!
+    @IBOutlet var viewV3MisIfMis: ViewV3MisIfMis!
     var viewList: Array<View> = []
+    
     
     @IBOutlet var viewIfMis: ViewIfMis!
 //    viewfull arrows
@@ -29,6 +32,8 @@ class ViewControllerOne: UIViewController, ViewHandler {
     @IBOutlet var viewOneArrows: [UIImageView]!
     @IBOutlet var viewV2V3MisArrows: [UIImageView]!
     @IBOutlet var viewIfMisArrows: [UIImageView]!
+    @IBOutlet var viewV2MisIfMisArrows: [UIImageView]!
+    @IBOutlet var viewV3MisIfMisArrows: [UIImageView]!
     
     var btnImage = UIImage(named: "play")
 
@@ -85,11 +90,15 @@ class ViewControllerOne: UIViewController, ViewHandler {
         viewOneVar.setArrowCollection(viewOneArrows)
         viewV2V3Mis.setArrowCollection(viewV2V3MisArrows)
         viewIfMis.setArrowCollection(viewIfMisArrows)
+        viewV2MisIfMis.setArrowCollection(viewV2MisIfMisArrows)
+        viewV3MisIfMis.setArrowCollection(viewV2MisIfMisArrows)
         viewList.append(viewFull)
         viewList.append(viewOneVar)
         viewList.append(viewOneVarTwo)
         viewList.append(viewV2V3Mis)
         viewList.append(viewIfMis)
+        viewList.append(viewV2MisIfMis)
+        viewList.append(viewV3MisIfMis)
         
         for view in viewList {
             view.delegate = self
